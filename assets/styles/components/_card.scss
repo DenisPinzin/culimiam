@@ -1,5 +1,55 @@
 @use "../abstract/variable" as v;
+@use "../abstract/mixin" as m;
 
 .card{
-    background-color: red;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cardimg {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.cardimg img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.cardtext {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px 15px;
+}
+
+.card h2 {
+    font-size: 16px;
+}
+
+.carddescription {
+    font-size: 14px;
+}
+
+.cardauteur {
+    font-size: 13px;
+}
+
+.cardbtn {
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+}
+
+.cardmodif {
+    @include m.button(v.$tertiaryColor, v.$quinaryColor, v.$quinaryColor)
+}
+
+.carddelete {
+    @include m.button(v.$tertiaryColor, v.$senaryColor, v.$senaryColor)
 }

@@ -3,31 +3,34 @@
 {% block title %}Hello RecettesController!{% endblock %}
 
 {% block body %}
-    <main>
-        
+    <main class="recettesmain">
+        <div class="container">
             {% for recette in recettes %}
                 <div class="card">
-                    <div>
+                    <div class="cardimg">
                         <img src={{asset('uploads/images/' ~ recette.image)}} alt="Image de pizza">
                     </div>
-
-                    <h2>{{recette.titre}}</h2>
-                    <p>{{recette.nombrepersonne}}</p>
-                    <p>{{recette.description}}</p>
-
-                    
-                    {% if app.user and app.user == recette.user %}
-                        <div class="btn_bloc">
-                            <a href={{path('modify_recette',{'id':recette.id})}}>modifier</a>
-                            <form method="POST" onsubmit="return confirm('Confirmer la suppression?')" action="{{ path('delete_recette',{'id': recette.id})}}">
-                                <input type="hidden" name="_method" value="delete">
-                                <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ recette.id)}}">
-                                <button class="btn_suppr">Suppimer</button>
-                            </form>
+                    <div class="cardcontain">
+                        <div class="cardtext">
+                            <h2>{{recette.titre}}</h2>
+                            <p class="cardnbperson">{{recette.nombrepersonne}}</p>
+                            <p class="carddescription">{{recette.description}}</p>
+                            <p class="cardauteur">Ajoutée par <strong>{{ recette.user.pseudo }}</strong></p>
+                            {% if app.user and app.user == recette.user %}
+                                <div class="cardbtn">
+                                    <a class="cardmodif" href={{path('modify_recette',{'id':recette.id})}}>Modifier</a>
+                                    <form method="POST" onsubmit="return confirm('Confirmer la suppression?')" action="{{ path('delete_recette',{'id': recette.id})}}">
+                                        <input type="hidden" name="_method" value="delete">
+                                        <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ recette.id)}}">
+                                        <button class="carddelete">Suppimer</button>
+                                    </form>
+                                </div>
+                            {% endif %}
                         </div>
-                    {% endif %}
+                    </div>
+
                 </div>
             {% endfor %}
-
+        </div>
     </main>
 {% endblock %}

@@ -1,1 +1,7 @@
 @use "../components/card" as c;
+
+.recettesmain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
