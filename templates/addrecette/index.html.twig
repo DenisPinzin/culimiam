@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AddrecetteController!{% endblock %}
+
+{% block body %}
+    	{# Ternaire pour vérifier l'existance de la variable 'isModification' #}
+	<h1> {{ isModification ? 'Modifier une recette' :  'Ajouter une recette' }}</h1>
+
+	{{form_start(recetteForm)}}
+	    {{form_widget(recetteForm)}}
+	    <button>{{ isModification ? 'Modifier' :  'Ajouter' }}</button>
+	{{form_end(recetteForm)}}
+{% endblock %}

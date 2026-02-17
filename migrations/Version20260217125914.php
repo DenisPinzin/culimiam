@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20260217095222 extends AbstractMigration
+final class Version20260217125914 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,14 @@ final class Version20260217095222 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_USER_PSEUDO ON user (pseudo)');
+        $this->addSql('ALTER TABLE recette ADD updated_at DATETIME DEFAULT NULL, CHANGE image image VARCHAR(191) DEFAULT NULL');
+        $this->addSql('ALTER TABLE recette ADD CONSTRAINT FK_49BB6390A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP INDEX UNIQ_USER_PSEUDO ON user');
+        $this->addSql('ALTER TABLE recette DROP FOREIGN KEY FK_49BB6390A76ED395');
+        $this->addSql('ALTER TABLE recette DROP updated_at, CHANGE image image VARCHAR(255) NOT NULL');
     }
 }
