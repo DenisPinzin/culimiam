@@ -1,0 +1,70 @@
+@use "../abstract/variable" as v;
+
+@font-face {
+    font-family: "CinzelDecorative-Regular";
+    src: url("../../fonts/CinzelDecorative-Regular.ttf");
+}
+
+// *****HERO***** //
+
+.hero {
+    width: 100%;
+    background-color: v.$secondaryColor;
+    display: flex;
+}
+
+.herotitle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 3%;
+}
+
+.heroimg{
+    flex: 1;
+    overflow: hidden;
+}
+
+.heroimg img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+h1 {
+    font-family: "CinzelDecorative-Regular";
+    color: v.$primaryColor;
+    font-size: 4em;
+    font-weight: lighter;
+}
+
+.hero h2 {
+    font-family: "CinzelDecorative-Regular";
+    color: v.$primaryColor;
+    font-size: 2.4em;
+    font-weight: lighter;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 2em;
+        flex-direction: column;
+    }
+
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-family: "CinzelDecorative-Regular";
+        color: v.$primaryColor;
+        font-size: 3em;
+        font-weight: lighter;
+    }
+
+    .hero h2 {
+        font-size: 1.5em;
+    }
+}
