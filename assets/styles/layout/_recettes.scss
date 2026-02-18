@@ -1,7 +1,33 @@
 @use "../components/card" as c;
+@use "../abstract/variable" as v;
+@use "../abstract/mixin" as m;
 
 .recettesmain {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.layoutcards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: center;
+    padding: 40px 0;
+}
+
+.btnvoirplus {
+    @include m.button(v.$tertiaryColor, v.$quaternaryColor, v.$quaternaryColor);
+}
+
+@media (max-width: 1400px) {
+    .layoutcards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 970px) {
+    .layoutcards {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

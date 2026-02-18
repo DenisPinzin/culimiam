@@ -2,20 +2,35 @@
 
 namespace App\Form;
 
-use Symfony\Component\Validator\Constraints\File;
+use App\Entity\TypeRepas;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class RecetteType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titre')
-            ->add('nombrepersonne')
-            ->add('description')
+            ->add('titre', null, [
+                'label' => 'Nom de la recette',
+            ])
+            ->add('nombrepersonne', null, [
+                'label' => 'Nombre de personnes',
+            ])
+            ->add('description', null, [
+                'label' => 'Description',
+            ])
+
+            ->add('typeRepas', EntityType::class, [
+                'class' => TypeRepas::class,
+                'choice_label' => 'nom',
+                'placeholder' => '-- Choisir un type --',
+            ])
+            
             ->add('imageFile', FileType::class, [
                 'required' => false,
                 'mapped' => true,

@@ -61,7 +61,6 @@ final class AddrecetteController extends AbstractController
             $entityManager->flush();
             $this->addFlash('success','La suppression à été effectuée');
             return $this->redirectToRoute('app_recettes');
-
         }
     }
 }

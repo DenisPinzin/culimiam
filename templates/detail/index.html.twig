@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DetailController!{% endblock %}
+
+{% block body %}
+    <main>
+        <div class="detailbg">
+            <div class="container">
+                <div class="detaillayout">
+                    <div class="detailimg">
+                        <img src="{{ asset('uploads/images/' ~ recette.image) }}" alt="">
+                    </div>
+                    <div class="detailalltext">
+                        <div class="detailtext">
+                            <h1 class="detailtitle">{{ recette.titre }}</h1>
+                            <p><strong>Description : </strong>{{ recette.description }}</p>
+                            <p><strong>Pour : </strong>{{ recette.nombrepersonne }} personnes</p>
+                            <p><strong>Type : </strong>{{ recette.typeRepas.nom }}</p>
+                            <p><strong>Ajoutée par : </strong><strong>{{ recette.user.pseudo }}</strong></p>
+                        </div>
+
+                        {% if app.user and app.user == recette.user %}
+                            <div class="detailbtn">
+                                <a class="btnmodif" href={{path('modify_recette',{'id':recette.id})}}>Modifier</a>
+                                <form method="POST" onsubmit="return confirm('Confirmer la suppression?')" action="{{ path('delete_recette',{'id': recette.id})}}">
+                                    <input type="hidden" name="_method" value="delete">
+                                    <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ recette.id)}}">
+                                    <button class="btndelete">Suppimer</button>
+                                </form>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+ 
+
+
+
+{% endblock %}

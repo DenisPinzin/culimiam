@@ -38,6 +38,10 @@ class Recette
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'recettes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?typerepas $typerepas = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,5 +124,17 @@ class Recette
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
+    }
+
+    public function getTyperepas(): ?typerepas
+    {
+        return $this->typerepas;
+    }
+
+    public function setTyperepas(?typerepas $typerepas): static
+    {
+        $this->typerepas = $typerepas;
+
+        return $this;
     }
 }
