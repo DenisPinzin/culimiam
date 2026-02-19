@@ -16,6 +16,14 @@
                             <p><strong>Description : </strong>{{ recette.description }}</p>
                             <p><strong>Pour : </strong>{{ recette.nombrepersonne }} personnes</p>
                             <p><strong>Type : </strong>{{ recette.typeRepas.nom }}</p>
+
+                            <div>
+                                <p><strong>Preparation : </strong></p>
+                                <div class="preline">
+                                    <p>{{ recette.preparation }}</p>
+                                </div>
+                            </div>
+
                             <p><strong>Ajoutée par : </strong><strong>{{ recette.user.pseudo }}</strong></p>
                         </div>
 

@@ -23,8 +23,16 @@ class RecetteType extends AbstractType
             ])
             ->add('description', null, [
                 'label' => 'Description',
+                'attr' => [
+                    'placeholder' => 'Donne envie de goûter en une phrase',
+                ],
             ])
-
+            ->add('preparation', null, [
+                'label' => 'Réalisation',
+                'attr' => [
+                    'placeholder' => 'Décris ici les étapes de la recette…',
+                ],
+            ])
             ->add('typeRepas', EntityType::class, [
                 'class' => TypeRepas::class,
                 'choice_label' => 'nom',

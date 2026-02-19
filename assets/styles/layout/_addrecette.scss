@@ -1,0 +1,92 @@
+@use "../abstract/variable" as v;
+@use "../abstract/mixin" as m;
+
+.addrecettebg {
+    background-color: v.$secondaryColor;
+    display: flex;
+    justify-content: center;
+    padding: 2em 0;
+}
+
+.addrecettebg h1 {
+    text-align: center;
+    padding-bottom: 0.7em;
+}
+
+.addrecettebg form {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px
+}
+
+.addrecetteform {
+    display: flex;
+    justify-content: center;
+}
+
+.addrecetteform #recette {
+    gap: 25px;
+}
+
+
+.addrecettebg #recette div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+}
+
+.addrecettebg #recette div input,
+.addrecettebg #recette_typeRepas,
+.addrecettebg textarea {
+    height: 30px;
+    min-width: 50em;
+    padding: 10px;
+}
+
+.addrecettebg #recette_typeRepas {
+    height: 4em;
+}
+
+.addrecettebg form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.addrecettebg textarea {
+    min-height: 10em;
+}
+
+.addrecettebg label {
+    color: v.$tertiaryColor;
+}
+
+#recette_imageFile {
+    color: v.$tertiaryColor;
+}
+
+.btnform {
+    @include m.button(v.$senaryColor, v.$senaryColor, v.$tertiaryColor);
+}
+
+@media (max-width: 1250px) {
+    .addrecettebg #recette div input,
+    .addrecettebg #recette_typeRepas,
+    .addrecettebg textarea {
+        min-width: 30em;
+    }
+
+    .addrecettebg h1 {
+        font-size: 3em;
+    }
+}
+
+@media (max-width: 500px) {
+    .addrecettebg #recette div input,
+    .addrecettebg #recette_typeRepas,
+    .addrecettebg textarea {
+        min-width: 20em;
+    }
+}

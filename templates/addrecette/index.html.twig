@@ -3,11 +3,19 @@
 {% block title %}Hello AddrecetteController!{% endblock %}
 
 {% block body %}
-    	{# Ternaire pour vérifier l'existance de la variable 'isModification' #}
-	<h1> {{ isModification ? 'Modifier une recette' :  'Ajouter une recette' }}</h1>
+	<main>
+		<section class="addrecettebg">
+			<div class="container">
+				{# Ternaire pour vérifier l'existance de la variable 'isModification' #}
+				<h1> {{ isModification ? 'Modifier une recette' :  'Ajouter une recette' }}</h1>
+				<div class="addrecetteform">
+					{{form_start(recetteForm)}}
+						{{form_widget(recetteForm)}}
+						<button class="btnform">{{ isModification ? 'Modifier' :  'Ajouter' }}</button>
+					{{form_end(recetteForm)}}
+				</div>
+			</div>
+		</section>
+	</main>
 
-	{{form_start(recetteForm)}}
-	    {{form_widget(recetteForm)}}
-	    <button>{{ isModification ? 'Modifier' :  'Ajouter' }}</button>
-	{{form_end(recetteForm)}}
 {% endblock %}

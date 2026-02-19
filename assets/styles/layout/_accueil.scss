@@ -11,6 +11,7 @@
     width: 100%;
     background-color: v.$secondaryColor;
     display: flex;
+    max-height: 800px;
 }
 
 .herotitle {
@@ -68,3 +69,14 @@ h1 {
         font-size: 1.5em;
     }
 }
+
+@media (min-width: 1440px) {
+    .hero h1 {
+        font-size: 6em;
+    }
+
+    .hero h2 {
+        font-size: 4em;
+    }
+}
+

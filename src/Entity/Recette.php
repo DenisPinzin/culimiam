@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RecetteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -41,6 +43,22 @@ class Recette
     #[ORM\ManyToOne(inversedBy: 'recettes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?typerepas $typerepas = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $preparation = null;
+
+    /**
+     * @var Collection<int, Quantite>
+     */
+    #[ORM\OneToMany(targetEntity: Quantite::class, mappedBy: 'recette', cascade: ['persist', 'remove'], orphanRemoval: true
+    )]
+    private Collection $quantites;
+
+
+    public function __construct()
+    {
+        $this->quantites = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -134,6 +152,43 @@ class Recette
     public function setTyperepas(?typerepas $typerepas): static
     {
         $this->typerepas = $typerepas;
+
+        return $this;
+    }
+
+    public function getPreparation(): ?string
+    {
+        return $this->preparation;
+    }
+
+    public function setPreparation(string $preparation): static
+    {
+        $this->preparation = $preparation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Quantite>
+     */
+    public function getQuantites(): Collection
+    {
+        return $this->quantites;
+    }
+
+    public function addQuantite(Quantite $quantite): static
+    {
+        if (!$this->quantites->contains($quantite)) {
+            $this->quantites->add($quantite);
+            $quantite->setRecette($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuantite(Quantite $quantite): static
+    {
+        $this->quantites->removeElement($quantite);
 
         return $this;
     }
