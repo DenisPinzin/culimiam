@@ -13,46 +13,95 @@
     padding-bottom: 0.7em;
 }
 
-.addrecettebg form {
+.addrecetteform {
     font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.addrecetteform form {
     display: flex;
     flex-direction: column;
+    gap: 1.5em;
     align-items: center;
-    gap: 20px
 }
 
-.addrecetteform {
+.addrecettetitle div,
+.addrecetteperson div,
+.addrecettedescription div,
+.addrecetterealisation div,
+.addrecettetyperepas div,
+.addrecetteimg div {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    width: 40em;
+    gap: 0.5em;
 }
 
-.addrecetteform #recette {
-    gap: 25px;
-}
-
-
-.addrecettebg #recette div {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.addrecettetitle div label,
+.addrecetteperson div label,
+.addrecettedescription div,
+.addrecetterealisation div,
+.addrecettetyperepas div,
+.addrecetteimg div {
+    text-align: center;
     font-weight: 700;
 }
 
-.addrecettebg #recette div input,
-.addrecettebg #recette_typeRepas,
-.addrecettebg textarea {
-    height: 30px;
-    min-width: 50em;
-    padding: 10px;
-}
-
-.addrecettebg #recette_typeRepas {
-    height: 4em;
-}
-
-.addrecettebg form div {
+.addrecetteimg div{
     display: flex;
     flex-direction: column;
+    align-items: center;
+
+}
+
+#recette_titre,
+#recette_nombrepersonne,
+#recette_typeRepas {
+    height: 2em;
+    padding: 0 10px;
+}
+
+
+
+.addrecetteingredient {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+
+.addrecetteingredient div {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.ingredientgrid > div > label {
+    display: block;
+    text-align: center;
+    font-weight: 700;
+
+}
+
+#recette_ingredient{
+    display: grid;
+    grid-template-columns: repeat(3, auto 1fr);
+    align-items: center;
+    column-gap: 16px;
+    row-gap: 8px;
+    justify-self: center;
+    align-self: center;
+}
+
+
+#recette_ingredient input[type="checkbox"]{
+  justify-self: end; /* case à droite de sa mini-colonne */
+}
+
+
+#recette_ingredient label{
+  justify-self: start;
+  margin: 0;
 }
 
 .addrecettebg textarea {
@@ -69,24 +118,37 @@
 
 .btnform {
     @include m.button(v.$senaryColor, v.$senaryColor, v.$tertiaryColor);
+    text-align: center;
 }
 
-@media (max-width: 1250px) {
-    .addrecettebg #recette div input,
-    .addrecettebg #recette_typeRepas,
-    .addrecettebg textarea {
-        min-width: 30em;
+@media (max-width: 850px){
+    #recette_ingredient{
+        grid-template-columns: repeat(2, auto 1fr); /* 3 paires (case+label) par ligne */
     }
 
-    .addrecettebg h1 {
-        font-size: 3em;
-    }
+    .addrecettetitle div,
+    .addrecetteperson div,
+    .addrecettedescription div,
+    .addrecetterealisation div,
+    .addrecettetyperepas div,
+    .addrecetteimg div {
+    display: flex;
+    width: 25em;
+}
 }
 
-@media (max-width: 500px) {
-    .addrecettebg #recette div input,
-    .addrecettebg #recette_typeRepas,
-    .addrecettebg textarea {
-        min-width: 20em;
+@media (max-width: 425px){
+    #recette_ingredient{
+        grid-template-columns: repeat(2, auto 1fr); /* 3 paires (case+label) par ligne */
     }
+
+    .addrecettetitle div,
+    .addrecetteperson div,
+    .addrecettedescription div,
+    .addrecetterealisation div,
+    .addrecettetyperepas div,
+    .addrecetteimg div {
+    display: flex;
+    width: 20em;
+}
 }

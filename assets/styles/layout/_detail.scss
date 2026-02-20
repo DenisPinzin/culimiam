@@ -46,10 +46,25 @@
     gap: 25px;
 }
 
-.detailtext p {
+.detailtext p,
+.detailinput {
     color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.detailingredient ul {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.detailinput {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
 
 .detailbtn {
     display: flex;

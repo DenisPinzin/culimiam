@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Entity;
+
 use App\Repository\IngredientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: IngredientRepository::class)]
+#[UniqueEntity( fields: ['nom'], message: 'Cet ingrédient existe déjà.')]
 class Ingredient
 {
     #[ORM\Id]
@@ -14,7 +17,7 @@ class Ingredient
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $nom = null;
 
     /**
@@ -39,8 +42,11 @@ class Ingredient
     }
 
     public function setNom(string $nom): static
-    {
-        $this->nom = $nom;
+    {   
+        $nom = trim($nom);
+        $nomMaj = mb_strtolower($nom);
+        $this->nom = mb_strtoupper(mb_substr($nomMaj, 0, 1))
+           . mb_substr($nomMaj, 1);
 
         return $this;
     }

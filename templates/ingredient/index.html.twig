@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello IngredientController!{% endblock %}
+
+{% block body %}
+<main class="container">
+    <h1>Ajouter un ingrédient</h1>
+
+    {{ form_start(ingredientForm) }}
+        {{ form_widget(ingredientForm) }}
+        <button class="btnform">Enregistrer</button>
+    {{ form_end(ingredientForm) }}
+</main>
+{% endblock %}

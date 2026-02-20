@@ -10,8 +10,37 @@
 				<h1> {{ isModification ? 'Modifier une recette' :  'Ajouter une recette' }}</h1>
 				<div class="addrecetteform">
 					{{form_start(recetteForm)}}
-						{{form_widget(recetteForm)}}
-						<button class="btnform">{{ isModification ? 'Modifier' :  'Ajouter' }}</button>
+						<div class="addrecettetitle">
+							{{ form_row(recetteForm.titre) }}
+						</div>
+						<div class="addrecetteperson">
+							{{ form_row(recetteForm.nombrepersonne) }}
+						</div>
+						<div class="addrecetteingredient">
+							<div class="ingredientgrid">
+    							{{ form_row(recetteForm.ingredient) }}
+							</div>
+    						{# <a class="btnform"
+    						   href="{{ path('app_ingredient', { redirect: app.request.uri }) }}">
+    						    Ajouter un ingrédient
+    						</a> #}
+						</div>
+						<div class="addrecettedescription">
+							{{ form_row(recetteForm.description) }}
+						</div>
+						<div class="addrecetterealisation">
+							{{ form_row(recetteForm.preparation) }}
+						</div>
+    					<div class="addrecettetyperepas">
+							{{ form_row(recetteForm.typeRepas) }}
+						</div>
+						<div class="addrecetteimg">
+							{{ form_row(recetteForm.imageFile) }}
+						</div>
+    					<div>
+							<button class="btnform">{{ isModification ? 'Modifier' :  'Ajouter' }}</button>
+						</div>
+    		
 					{{form_end(recetteForm)}}
 				</div>
 			</div>

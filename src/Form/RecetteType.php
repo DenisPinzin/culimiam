@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\TypeRepas;
+use App\Entity\Ingredient;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -20,6 +21,14 @@ class RecetteType extends AbstractType
             ])
             ->add('nombrepersonne', null, [
                 'label' => 'Nombre de personnes',
+            ])
+            ->add('ingredient', EntityType::class, [
+                'class' => Ingredient::class,
+                'choice_label' => 'nom',   
+                'multiple' => true,       
+                'expanded' => true,       
+                'required' => false,
+                'by_reference' => false,   
             ])
             ->add('description', null, [
                 'label' => 'Description',
@@ -42,6 +51,7 @@ class RecetteType extends AbstractType
             ->add('imageFile', FileType::class, [
                 'required' => false,
                 'mapped' => true,
+                'label' => 'Choisir une image',
                 'constraints' => [
                     new File([
                         'maxSize' => '5M',
