@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Entity;
-
 use App\Repository\IngredientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -24,16 +23,9 @@ class Ingredient
     #[ORM\ManyToMany(targetEntity: Recette::class, mappedBy: 'ingredient')]
     private Collection $recettes;
 
-    /**
-     * @var Collection<int, Quantite>
-     */
-    #[ORM\OneToMany(targetEntity: Quantite::class, mappedBy: 'ingredient', orphanRemoval: true)]
-    private Collection $quantites;
-
     public function __construct()
     {
         $this->recettes = new ArrayCollection();
-        $this->quantites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -80,33 +72,4 @@ class Ingredient
         return $this;
     }
 
-    /**
-     * @return Collection<int, Quantite>
-     */
-    public function getQuantites(): Collection
-    {
-        return $this->quantites;
-    }
-
-    public function addQuantite(Quantite $quantite): static
-    {
-        if (!$this->quantites->contains($quantite)) {
-            $this->quantites->add($quantite);
-            $quantite->setIngredient($this);
-        }
-
-        return $this;
-    }
-
-    public function removeQuantite(Quantite $quantite): static
-    {
-        if ($this->quantites->removeElement($quantite)) {
-            // set the owning side to null (unless already changed)
-            if ($quantite->getIngredient() === $this) {
-                $quantite->setIngredient(null);
-            }
-        }
-
-        return $this;
-    }
 }

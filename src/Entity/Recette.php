@@ -48,16 +48,14 @@ class Recette
     private ?string $preparation = null;
 
     /**
-     * @var Collection<int, Quantite>
+     * @var Collection<int, ingredient>
      */
-    #[ORM\OneToMany(targetEntity: Quantite::class, mappedBy: 'recette', cascade: ['persist', 'remove'], orphanRemoval: true
-    )]
-    private Collection $quantites;
-
+    #[ORM\ManyToMany(targetEntity: ingredient::class, inversedBy: 'recettes')]
+    private Collection $ingredient;
 
     public function __construct()
     {
-        $this->quantites = new ArrayCollection();
+        $this->ingredient = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -169,27 +167,27 @@ class Recette
     }
 
     /**
-     * @return Collection<int, Quantite>
+     * @return Collection<int, ingredient>
      */
-    public function getQuantites(): Collection
+    public function getIngredient(): Collection
     {
-        return $this->quantites;
+        return $this->ingredient;
     }
 
-    public function addQuantite(Quantite $quantite): static
+    public function addIngredient(ingredient $ingredient): static
     {
-        if (!$this->quantites->contains($quantite)) {
-            $this->quantites->add($quantite);
-            $quantite->setRecette($this);
+        if (!$this->ingredient->contains($ingredient)) {
+            $this->ingredient->add($ingredient);
         }
 
         return $this;
     }
 
-    public function removeQuantite(Quantite $quantite): static
+    public function removeIngredient(ingredient $ingredient): static
     {
-        $this->quantites->removeElement($quantite);
+        $this->ingredient->removeElement($ingredient);
 
         return $this;
     }
+    
 }
