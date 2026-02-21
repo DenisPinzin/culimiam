@@ -38,6 +38,7 @@
                                 <li><a href={{path('app_login')}}>Connexion</a></li>
                                 <li><a href={{path('app_register')}}>S'inscrire</a></li>
                             {% endif %}
+                            <li><a href={{path('app_contact')}}>Contact</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -62,14 +63,15 @@
                         <ul class="listfooter">
                             <li><a href={{path('app_accueil')}}>Accueil</a></li>
                             <li><a href={{path('app_recettes')}}>Recettes</a></li>
-                            {% if is_granted('ROLE_USER') %}
-                                <li><a href={{path('add_recette')}}>Ajouter</a></li>
-                                <li><a href={{path('app_logout')}}>Deconexion</a></li>
-                            {% endif %}
                             {% if not is_granted('ROLE_USER') %}
                                 <li><a href={{path('app_login')}}>Connexion</a></li>
                                 <li><a href={{path('app_register')}}>S'inscrire</a></li>
                             {% endif %}
+                            {% if is_granted('ROLE_USER') %}
+                                <li><a href={{path('add_recette')}}>Ajouter</a></li>
+                                <li><a href={{path('app_logout')}}>Deconexion</a></li>
+                            {% endif %}
+                            <li><a href={{path('app_contact')}}>Contact</a></li>
                         </ul>
                     </nav>
                 </div>
