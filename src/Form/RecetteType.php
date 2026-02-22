@@ -21,6 +21,7 @@ class RecetteType extends AbstractType
             ])
             ->add('nombrepersonne', null, [
                 'label' => 'Nombre de personnes',
+                'attr' => ['min' => 1],
             ])
             ->add('ingredient', EntityType::class, [
                 'class' => Ingredient::class,
@@ -34,12 +35,13 @@ class RecetteType extends AbstractType
                 'label' => 'Description',
                 'attr' => [
                     'placeholder' => 'Donne envie de goûter en une phrase',
+                    'maxlength' => 255,
                 ],
             ])
             ->add('preparation', null, [
                 'label' => 'Réalisation',
                 'attr' => [
-                    'placeholder' => 'Décris ici les étapes de la recette…',
+                    'placeholder' => 'Décris ici les étapes de la recette en n\'oubliant pas les dosages…',
                 ],
             ])
             ->add('typeRepas', EntityType::class, [

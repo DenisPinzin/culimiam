@@ -39,27 +39,30 @@ header {
     width: 90px;
 }
 
-nav ul {
+.links-menu ul {
     list-style: none;
     display: flex;
     gap: 3em;
     align-items: center;
 }
 
-nav ul li {
+.links-menu ul li,
+.navfooter {
     list-style: none;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: bold;
 }
 
-nav ul li a {
+.links-menu ul li a,
+.navfooter ul li a  {
     display: inline-block;
     transition: transform 0.2s ease;
     color: v.$secondaryColor;
 }
 
-nav ul li a:hover {
+.links-menu ul li a:hover,
+.navfooter ul li a:hover {
     transform: scale(1.1);
 }
 
@@ -76,7 +79,46 @@ nav ul li a:hover {
     gap: 0.60em;
 }
 
-@media (max-width: 768px) {
+
+
+// ***** FOOTER NAV ***** //
+
+footer {
+  display: flex;
+  justify-content: center;
+}
+
+.footerorientation {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.footercontain{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listfooter {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.socials a {
+  color: black;
+}
+
+.copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+}
+
+@media (max-width: 1020px) {
 
   .header {
     position: relative;
@@ -89,7 +131,7 @@ nav ul li a:hover {
     cursor: pointer;
   }
 
-  nav {
+  .links-menu {
     position: absolute;
     top: 9em;
     left: 0;
@@ -97,7 +139,7 @@ nav ul li a:hover {
     z-index: 3;
   }
 
-  nav ul {
+  .links-menu ul {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -112,13 +154,13 @@ nav ul li a:hover {
 
   }
 
-  nav.nav-menu ul {
+  .links-menu.nav-menu ul {
     max-height: 500px;
     opacity: 1;
     pointer-events: auto;
   }
 
-  nav ul li {
+  .links-menu ul li {
     padding: 1.2em 0;
     border-bottom: 2px solid v.$secondaryColor;
   }
@@ -128,30 +170,21 @@ nav ul li a:hover {
   }
 }
 
-// ***** FOOTER NAV ***** //
 
-footer {
-  display: flex;
-  justify-content: center;
+
+
+@media (max-width: 500px) {
+  .footercontain{
+    flex-direction: column;
+    gap: 2em;
+  }
+
+  .listfooter {
+    align-items: center;
+  }
+  .socials {
+    padding: 10px 0;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+  }
 }
-
-.footerorientation {
-  display: flex;
-  flex-direction: column;
-}
-
-.footercontain{
-  display: flex;
-  justify-content: space-between;
-}
-
-.listfooter {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-}
-
-.socials a {
-  color: black;
-}
-
