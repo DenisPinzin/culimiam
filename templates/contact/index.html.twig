@@ -3,13 +3,25 @@
 {% block title %}Hello ContactController!{% endblock %}
 
 {% block body %}
-    {% for message in app.flashes('success') %}
-      <div>{{ message }}</div>
-    {% endfor %}
-    {{ form_start(form) }}
-        {{ form_row(form.name) }}
-        {{ form_row(form.email) }}
-        {{ form_row(form.message) }}
-        {{ form_row(form.submit) }}
-    {{ form_end(form) }}
+    <main>
+        <section class="contact">
+            <div class="container">
+                <div class="contactform">
+                <h1>Contact</h1>
+                    {{ form_start(form) }}
+                    <div class="contactspace">
+                        {{ form_row(form.name,    {'row_attr': {'class': 'form-row'}}) }}
+                        {{ form_row(form.email,   {'row_attr': {'class': 'form-row'}}) }}
+                        {{ form_row(form.message, {'row_attr': {'class': 'form-row'}}) }}
+
+                        <button type="submit" class="contactbtn">Envoyer</button>
+
+                    </div>
+
+
+                    {{ form_end(form) }}                
+                </div>
+            </div>
+        </section>
+    </main>
 {% endblock %}

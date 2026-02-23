@@ -3,13 +3,24 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
+	<main>
+		<section class="inscription">
+		  	<div class="inscriptionform">
+		    	<h1>S'inscrire</h1>
+				<div class="inscriptionspace">
+					{{ form_start(userForm) }}
+						{{ form_errors(userForm) }}
 
-	{# Ternaire pour vérifier l'existance de la variable 'isModification' #}
-	<h1> S'incrire</h1>
+						{{ form_row(userForm.pseudo, {'row_attr': {'class': 'form-row'}}) }}
+						{{ form_row(userForm.email,  {'row_attr': {'class': 'form-row'}}) }}
 
-	{{form_start(userForm)}}
-        {{ form_errors(userForm) }}
-	    {{form_widget(userForm)}}
-	    <button>Valider</button>
-	{{form_start(userForm)}}
+						{{ form_row(userForm.password.first,  {'row_attr': {'class': 'form-row'}}) }}
+						{{ form_row(userForm.password.second, {'row_attr': {'class': 'form-row'}}) }}
+
+						<button type="submit">Valider</button>
+					{{ form_end(userForm) }}			
+				</div>
+			</div>
+		</section>
+	</main>
 {% endblock %}

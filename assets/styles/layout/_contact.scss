@@ -1,0 +1,74 @@
+@use "../abstract/variable" as v;
+@use "../abstract/mixin" as m;
+
+.contact {
+    background-color: v.$secondaryColor;
+    display: flex;
+    justify-content: center;
+    padding: 2em 0;
+}
+
+.contact h1 {
+    text-align: center;
+    padding-bottom: 0.5em;
+}
+
+.contact .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contactform {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.contactform form{
+    width: 40em;
+}
+
+.contactspace {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+
+.contactspace .form-row {
+    display: flex;
+    flex-direction: column;
+    color: v.$tertiaryColor;
+    gap: 0.5em;
+    font-weight: 700;
+}
+
+.contactspace .form-row input {
+    height: 2em;
+    padding: 0 10px;
+}
+
+.contactspace textarea{
+    min-height: 10em;
+    padding: 10px;
+}
+
+.contactbtn {
+    align-self: center;
+    @include m.button(v.$quaternaryColor, v.$quaternaryColor, v.$tertiaryColor);
+}
+
+@media (max-width: 850px){
+    .contactform form {
+        width: 25em;
+    }
+}
+
+@media (max-width: 425px){
+    .contactform form {
+        width: 20em;
+    }
+
+    .contact h1 {
+        font-size: 2em;
+    }
+}

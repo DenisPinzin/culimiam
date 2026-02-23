@@ -4,9 +4,22 @@
 
 {% block body %}
     <main class="recettesmain">
+            <section class="recetteshero">
+                <div class="container recettealignhero">
+                    <h1>Vos recettes</h1>
+                    <p class="herorecetteparagraph">
+                        Découvrez ici toutes vos recettes préférées, partagées avec amour par la communauté.
+                        Et si le cœur vous en dit, vous pouvez vous aussi contribuer en ajoutant vos propres recettes
+                        Le bouton « Ajouter une recette » apparaît lorsque vous êtes connecté.
+                        S’il n’est pas visible, il vous suffit de vous inscrire puis de vous connecter pour rejoindre l’aventure !
+                    </p>
+                    {% if is_granted('ROLE_USER') %}
+                        <a class="addrecette" href={{path('add_recette')}}>Ajouter une recette</a>
+                    {% endif %}
+                </div>
+            </section>
         <div class="container">
             <div class="bgsections">
-                <h1></h1>
                 <div class="layoutcards">
                     {% for recette in recettes %}
                         <div class="card">
