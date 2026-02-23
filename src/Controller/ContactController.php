@@ -22,8 +22,8 @@ final class ContactController extends AbstractController
             $data = $form->getData();
 
             $email = (new Email())
-                ->from('expediteur@gmail.com')
-                ->to('destinataire@gmail.com')
+                ->from('contact@culimiam.sc5duyo5958.universe.wf')
+                ->to('contact@culimiam.sc5duyo5958.universe.wf')
                 ->subject('FORMULAIRE ' . date('H:i:s'))
                 ->text(
                     "Nom: {$data['name']}\n".
