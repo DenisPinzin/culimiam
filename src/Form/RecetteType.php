@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\TypeRepas;
+use App\Entity\Typerepas;
 use App\Entity\Ingredient;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -25,11 +25,11 @@ class RecetteType extends AbstractType
             ])
             ->add('ingredient', EntityType::class, [
                 'class' => Ingredient::class,
-                'choice_label' => 'nom',   
-                'multiple' => true,       
-                'expanded' => true,       
+                'choice_label' => 'nom',
+                'multiple' => true,
+                'expanded' => true,
                 'required' => false,
-                'by_reference' => false,   
+                'by_reference' => false,
             ])
             ->add('description', null, [
                 'label' => 'Description',
@@ -44,12 +44,11 @@ class RecetteType extends AbstractType
                     'placeholder' => 'Décris ici les étapes de la recette en n\'oubliant pas les dosages…',
                 ],
             ])
-            ->add('typeRepas', EntityType::class, [
-                'class' => TypeRepas::class,
+            ->add('typerepas', EntityType::class, [
+                'class' => Typerepas::class,
                 'choice_label' => 'nom',
                 'placeholder' => '-- Choisir un type --',
             ])
-            
             ->add('imageFile', FileType::class, [
                 'required' => false,
                 'mapped' => true,
