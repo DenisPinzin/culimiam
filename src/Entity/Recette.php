@@ -42,15 +42,15 @@ class Recette
 
     #[ORM\ManyToOne(inversedBy: 'recettes')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?typerepas $typerepas = null;
+    private ?Typerepas $typerepas = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $preparation = null;
 
     /**
-     * @var Collection<int, ingredient>
+     * @var Collection<int, Ingredient>
      */
-    #[ORM\ManyToMany(targetEntity: ingredient::class, inversedBy: 'recettes')]
+    #[ORM\ManyToMany(targetEntity: Ingredient::class, inversedBy: 'recettes')]
     private Collection $ingredient;
 
     public function __construct()
@@ -142,12 +142,12 @@ class Recette
         return $this->updatedAt;
     }
 
-    public function getTyperepas(): ?typerepas
+    public function getTyperepas(): ?Typerepas
     {
         return $this->typerepas;
     }
 
-    public function setTyperepas(?typerepas $typerepas): static
+    public function setTyperepas(?Typerepas $typerepas): static
     {
         $this->typerepas = $typerepas;
 
@@ -167,14 +167,14 @@ class Recette
     }
 
     /**
-     * @return Collection<int, ingredient>
+     * @return Collection<int, Ingredient>
      */
     public function getIngredient(): Collection
     {
         return $this->ingredient;
     }
 
-    public function addIngredient(ingredient $ingredient): static
+    public function addIngredient(Ingredient $ingredient): static
     {
         if (!$this->ingredient->contains($ingredient)) {
             $this->ingredient->add($ingredient);
@@ -183,7 +183,7 @@ class Recette
         return $this;
     }
 
-    public function removeIngredient(ingredient $ingredient): static
+    public function removeIngredient(Ingredient $ingredient): static
     {
         $this->ingredient->removeElement($ingredient);
 
