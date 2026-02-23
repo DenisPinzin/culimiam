@@ -23,7 +23,7 @@ final class ContactController extends AbstractController
 
             $email = (new Email())
                 ->from('contact@culimiam.sc5duyo5958.universe.wf')
-                ->to($data['email'])
+                ->to('contact@culimiam.sc5duyo5958.universe.wf')
                 ->subject('FORMULAIRE ' . date('H:i:s'))
                 ->text(
                     "Nom: {$data['name']}\n".
