@@ -49,12 +49,104 @@ h1 {
     font-weight: lighter;
 }
 
+//***** MAIN *****//
+.presentation {
+    display: flex;
+    justify-content: center;
+    background: transparent;
+}
+
+// .bgpresentation {
+//     background-image: url("../../../public/images/foodherorecipe.jpg");
+//     background-attachment: fixed;
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     height: 100px;
+// }
+
+.presentation .layoutcards {
+    border-radius: 10px;
+}
+
+.presentationorientation {
+    background-color: v.$tertiaryColor;
+    padding: 2em;
+    display: flex;
+    gap: 2em;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.titleaccueil {
+    font-family: "CinzelDecorative-Regular";
+    text-align: center;
+    color: v.$primaryColor;
+
+}
+
+.presentationcontent {
+    display: flex;
+    gap: 2em;
+    height: 400px;
+}
+
+.firstcontentpresentation {
+    display: flex;
+    flex-direction:row-reverse;
+}
+
+.presentationcontent p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.presentationimg {
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.presentationimg  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.secondcontentaccueil {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex: 1;   
+}
+
+.secondcontentaccueil p {
+    line-height: 1.4;
+}
+
+.presentation .layoutcards {
+    padding-top: 0;
+}
+
 @media (max-width: 768px) {
     .hero {
         padding-top: 2em;
         flex-direction: column;
     }
 
+    .presentationcontent {
+        flex-direction: column;
+    }
+
+    .secondcontentaccueil {
+        text-align: center;
+        justify-content: inherit;
+        gap: 1em;
+    }
+
+    .presentationcontent {
+        height: auto;
+    }
 }
 
 @media (max-width: 576px) {
@@ -69,6 +161,8 @@ h1 {
         font-size: 1.5em;
     }
 }
+
+
 
 @media (min-width: 1440px) {
     .hero h1 {

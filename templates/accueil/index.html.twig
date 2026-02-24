@@ -13,23 +13,63 @@
                 <img src={{asset('images/poeleehero.png')}} alt="poelee paysanne">
             </div>
         </section>
-        <section class="presentaion">
+        <div class="bgpresentation">
+        </div>
+        <section class="presentation">
             <div class="container">
-                <div>
-                    <h2>Culimiam, des recettes simples et gourmandes</h2>
-                    <div class="">
-                        <p>
-                            Ici, tu trouves des recettes testées et approuvées : rapides pour le quotidien,
-                            généreuses pour les week-ends, et toujours expliquées étape par étape.
-                            Filtre par type de repas, découvre les ingrédients et ajuste les quantités
-                            selon le nombre de personnes.
-                        </p>
+                <div class="presentationorientation">
+                    <h2 class="titleaccueil">Culimiam, des recettes simples et gourmandes</h2>
+                    <div class="presentationcontent">
                         <div class="presentationimg">
-                            <img src="" alt="">
+                            <img src={{asset('images/accueilwelcome.jpg')}} alt="main qui cuisine">
+                        </div>
+                        <div class="secondcontentaccueil">
+                            <p>
+                                Ici, tu trouveras des recettes testées et approuvées : rapides pour le quotidien, généreuses pour les week-ends, et toujours expliquées étape par étape.
+                                Chaque recette détaille les ingrédients nécessaires et te permet d’ajuster facilement les quantités selon le nombre de personnes.
+                            </p>
+                            <p>   
+                                Envie de partager tes propres idées ? L’ajout de recettes est réservé aux utilisateurs inscrits. Il te suffit de créer un compte et de te connecter pour proposer tes plats, les enregistrer et les retrouver facilement.
+                            </p>
+                            <p>
+                                Que tu cherches de l’inspiration ou que tu souhaites transmettre tes recettes préférées, tout est pensé pour une cuisine simple, pratique et conviviale
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <section class="presentation">
+            <div class="container">
+                <div class="presentationorientation">
+                    <h2 class="titleaccueil">Culimiam, des recettes simples et gourmandes</h2>
+                    
+                    <div class="layoutcards ">
+                    {% for recette in lastcard %}
+                        <div class="card">
+                            <div class="cardimg">
+                                <img src={{asset('uploads/images/' ~ recette.image)}} alt="Image de pizza">
+                            </div>
+                            <div class="cardcontain">
+                                <div class="cardtext">
+                                    <div class="cardtextespace">
+                                        <h3 style="background-color: {{ recette.typeRepas.couleur }};" class="cardtyperepas">{{ recette.typeRepas.nom }}</h3>
+                                        <h2>{{recette.titre}}</h2>
+                                        <p class="cardnbperson"><strong>Pour : </strong>{{recette.nombrepersonne}} personnes</p>
+                                        <p class="carddescription"><strong>Description : </strong>{{recette.description}}</p>
+                                        <p class="cardauteur">Ajoutée par <strong>{{ recette.user.pseudo }}</strong></p>
+                                    </div>
+                                    <a class="btnvoirplus" href="{{ path('app_detail', { id: recette.id }) }}">Voir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+
     </main>
 {% endblock %}
