@@ -104,3 +104,9 @@
         flex: 0; 
     }
 }
+
+@media (max-width: 1500px) {
+    .detailbg {
+        min-height: 90vh;
+    }
+}

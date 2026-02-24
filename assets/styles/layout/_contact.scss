@@ -72,3 +72,9 @@
         font-size: 2em;
     }
 }
+
+@media (max-width: 1500px){
+    .contact {
+        min-height: 90vh;
+    }
+}
