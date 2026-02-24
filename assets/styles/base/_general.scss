@@ -25,6 +25,7 @@ main {
 header {
     display: flex;
     justify-content: center;
+    background-color: v.$tertiaryColor;
 }
 
 .headercontain {
@@ -86,6 +87,7 @@ header {
 footer {
   display: flex;
   justify-content: center;
+  background-color: v.$tertiaryColor;
 }
 
 .footerorientation {
@@ -104,6 +106,11 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 1em;
+}
+
+.socials {
+  display: flex;
+  gap: 2em;
 }
 
 .socials a {
