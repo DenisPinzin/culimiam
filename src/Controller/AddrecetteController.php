@@ -16,14 +16,12 @@ final class AddrecetteController extends AbstractController
     #[Route('/addrecette', name: 'add_recette')]
     public function index(?Recette $recette, Request $request, EntityManagerInterface $entityManager): Response
     {
-
         // Vérification si l'objet existe via l'injection de dependance
         // Si injection de dependance = On est en Modification
         // Sinon, on est un Creation et on créé l'objet
         if(!$recette){
             $recette = new Recette;
         }
-
         // Récupération du formulaire et association avec l'objet
         $form = $this->createForm(RecetteType::class,$recette);
 
@@ -43,9 +41,6 @@ final class AddrecetteController extends AbstractController
             // Redirection de l'utilisateur
             return $this->redirectToRoute('app_recettes');
         }
-
-
-
 
         return $this->render('addrecette/index.html.twig', [
             'recetteForm' => $form->createView(), //envoie du formulaire en VUE

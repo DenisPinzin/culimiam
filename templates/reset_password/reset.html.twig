@@ -3,10 +3,20 @@
 {% block title %}Hello ResetPasswordController!{% endblock %}
 
 {% block body %}
-    {{ form_start(resetForm) }}
-    {{ form_row(resetForm.password) }}
-
-    <button type="submit">Changer le mot de passe</button>
-
-    {{ form_end(resetForm) }}
+<main>
+    <section class="request">
+        <div class="container">
+            <div class="requestform">
+                <h1>Nouveau mot de passe</h1>
+                {{ form_start(resetForm) }}
+                <div class="requestspace">
+                    {{ form_row(resetForm.password, {'row_attr': {'class': 'form-row'}}) }}
+                    <button class="requestbtn" type="submit">Changer le mot de passe</button>
+                </div>
+                {{ form_end(resetForm) }}
+ 
+           </div>
+        </div>
+    </section>
+</main>
 {% endblock %}

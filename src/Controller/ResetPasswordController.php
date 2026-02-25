@@ -36,7 +36,7 @@ final class ResetPasswordController extends AbstractController
                 $user->setResetTokenExpiresAt((new DateTime())->modify('+1 hour'));
                 //On stocke la date d'expiration du token dans l'objet user
                 $entityManager->flush();
-
+                
                 $resetLink = $this->generateUrl('app_reset_password', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
                 //Création du lien intégrant le token
                 $email = (new Email()) //création du mail
@@ -61,18 +61,13 @@ final class ResetPasswordController extends AbstractController
     }
 
     #[Route('/reset/password/reset', name: 'app_reset_password')]
-    public function reset(
-        Request $request,
-        UserRepository $userRepository,
-        EntityManagerInterface $entityManager,
-        UserPasswordHasherInterface $passwordHasher
-    ): Response {
+    public function reset( Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher ): Response {
         $token = $request->query->get('token');
 
         if (!$token) {
             throw $this->createNotFoundException('Token manquant');
         }
-
+        //Requête DQL pour récupérer l'objet User associé au token
         $user = $userRepository->findOneBy(['resetToken' => $token]);
 
         if (!$user || !$user->isResetTokenValid()) {
@@ -83,16 +78,15 @@ final class ResetPasswordController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            // Création d'un nouveau password
             $newPassword = $form->get('password')->getData();
-
             $user->setPassword(
                 $passwordHasher->hashPassword($user, $newPassword)
             );
-
+            //Réinitialisation des propriété RsetToken et TokenExpireAT de l'objet User
             $user->setResetToken(null);
             $user->setResetTokenExpiresAt(null);
-
+            //INSERT INTO
             $entityManager->flush();
 
             $this->addFlash('success', 'Mot de passe modifié avec succès');

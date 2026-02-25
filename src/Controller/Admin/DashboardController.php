@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 #[AdminDashboard(routePath: '/admin', routeName: 'admin')]
 class DashboardController extends AbstractDashboardController
 {
+    // #[IsGranted ('ROLE_ADMIN')]
+    // #[Route ('/admin', name: 'admin')]
     public function index(): Response
     {
         // return parent::index();
