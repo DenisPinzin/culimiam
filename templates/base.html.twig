@@ -22,11 +22,35 @@
     </head>
     <body>
         <header>
-            <a href="{{ asset('logo.png')}}">
-                <div class="logo">
-                    <img src="" alt="logo">
+            <nav>
+                <a href="">
+                    <div class="logo">
+                        <img src="{{ asset('assets/img/logo.png') }}" alt="logo">
+                    </div>
+                </a>
+                <div class="menu">
+                    <div class="menu-line"></div>
+                    <div class="menu-line"></div>
+                    <div class="menu-line"></div>
                 </div>
-            </a>
+                <ul class="links-menu">
+                    <li>
+                        <a href="">Accueil</a>
+                    </li>
+                    <li>
+                        <a href="">Recettes</a>
+                    </li>
+                    <li>
+                        <a href="">Connexion</a>
+                    </li>
+                    <li>
+                        <a href="">S'inscrire</a>
+                    </li>
+                    <li>
+                        <a href="">Contact</a>
+                    </li>
+                </ul>
+            </nav>
         </header>
         {% block body %}{% endblock %}
     </body>

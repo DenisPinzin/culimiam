@@ -1,3 +1,5 @@
-body {
-    background-color: skyblue;
-}
+@use 'base/general';
+
+//PAGES
+
+@use 'pages/accueil';
