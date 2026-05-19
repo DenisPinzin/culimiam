@@ -23,7 +23,7 @@
     <body>
         <header>
             <nav>
-                <a href="">
+                <a href={{path('app_home')}}>
                     <div class="logo">
                         <img src="{{ asset('assets/img/logo.png') }}" alt="logo">
                     </div>
@@ -35,17 +35,23 @@
                 </div>
                 <ul class="links-menu">
                     <li>
-                        <a href="">Accueil</a>
+                        <a href={{path('app_home')}}>Accueil</a>
                     </li>
                     <li>
                         <a href="">Recettes</a>
                     </li>
+                    {% if is_granted('ROLE_USER') %}
                     <li>
-                        <a href="">Connexion</a>
+                        <a href={{ path('app_logout') }}>Déconnexion</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href={{path('app_login')}}>Connexion</a>
                     </li>
                     <li>
-                        <a href="">S'inscrire</a>
+                        <a href={{path('app_register')}}>S'inscrire</a>
                     </li>
+                    {% endif %}
                     <li>
                         <a href="">Contact</a>
                     </li>

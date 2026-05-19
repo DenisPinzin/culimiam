@@ -17,6 +17,11 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+        //Sécuriser si deja connecté
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
+
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 
@@ -37,7 +42,13 @@ class SecurityController extends AbstractController
 
     #[Route(path: '/inscription', name: 'app_register')]
     public function register(Request $request,UserPasswordHasherInterface $passwordEncoder,EntityManagerInterface $entityManager,AuthenticationUtils $authenticationUtils): Response
-    {
+    {   
+
+        //Sécuriser si deja connecté
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
+
         // Vérification si l'objet existe via l'injection de dependance
         // Si injection de dependance = On est en Modification
         // Sinon, on est un Creation et on créé l'objet
