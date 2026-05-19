@@ -1,0 +1,35 @@
+//Import font
+@font-face {
+    font-family: "Bitter-regular";
+    src: url("../base/Bitter/static/Bitter-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Work_Sans-regular";
+    src: url("../base/Work_Sans/static/WorkSans-Regular.ttf");
+}
+
+// Colors
+$text-primary-color: #FFFFF9;
+$text-secondary-color: #000001;
+$text-tertiary-color: #FE4700;
+$background-primary-color: #FFFFF9;
+$background-secondary-color: #000001;
+$typeofmeal-color: #E842B9; 
+
+   
+// Font-family
+$text-font: "Bitter-regular";
+$title-font: "Work_Sans-regular";
+
+// Polices
+$theme-title: 2,25rem;
+$theme-title-mobile: 4rem;
+$theme-text: 3rem;
+$theme-text-mobile: 2rem;
+
+// Breakpoints
+$small: 768px;
+$medium: 1024px;
+$large: 1440px;
+
