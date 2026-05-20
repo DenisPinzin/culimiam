@@ -20,6 +20,10 @@ class Dosage
     #[ORM\JoinColumn(nullable: false)]
     private ?recette $recette = null;
 
+    #[ORM\ManyToOne(inversedBy: 'dosage')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Ingredient $ingredient = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +49,18 @@ class Dosage
     public function setRecette(?recette $recette): static
     {
         $this->recette = $recette;
+
+        return $this;
+    }
+
+    public function getIngredient(): ?Ingredient
+    {
+        return $this->ingredient;
+    }
+
+    public function setIngredient(?Ingredient $ingredient): static
+    {
+        $this->ingredient = $ingredient;
 
         return $this;
     }
