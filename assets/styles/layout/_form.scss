@@ -1,0 +1,58 @@
+@use "../abstract/variable" as v;
+
+.main-form  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 80vh;
+}
+
+.main-form-login h1 {
+    text-align: center;
+    font-weight: 200;
+    font-size: v.$theme-title-h1;
+}
+
+.form-contain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    background-color: v.$background-primary-color;
+    border-radius: 10px;
+    padding: 3rem 2rem;
+}
+
+.form-contain form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2.5rem;
+    width: 70%;
+}
+
+form .form-field {
+    display: flex;
+    flex-direction: column;
+    font-family: v.$title-font;
+    gap: 0.5rem;
+}
+
+.form-field label {
+    font-size: v.$theme-input;
+}
+
+.form-field input {
+    background-color: v.$background-tertiary-color;
+    border-radius: 10px;
+    border-color: v.$background-tertiary-color;
+    padding: 0.5rem;
+}
+
+@media screen and (max-width: v.$medium) {
+    .form-contain form {
+        width: 90%;
+    }
+}

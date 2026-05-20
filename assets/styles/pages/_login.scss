@@ -1,0 +1,15 @@
+@use "../abstract/variable" as v;
+@use "../layout/form";
+
+.main-login {
+    background-image: url("~/public/assets/img/connexion.jpg");
+}
+
+.form-btn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.forget {
+    color: v.$text-tertiary-color;
+}
