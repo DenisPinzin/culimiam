@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RecetteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -32,6 +34,21 @@ class Recette
     #[ORM\ManyToOne(inversedBy: 'recettes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?user $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'recette')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Typerepas $typerepas = null;
+
+    /**
+     * @var Collection<int, Dosage>
+     */
+    #[ORM\OneToMany(targetEntity: Dosage::class, mappedBy: 'recette', orphanRemoval: true)]
+    private Collection $dosages;
+
+    public function __construct()
+    {
+        $this->dosages = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -106,6 +123,48 @@ class Recette
     public function setUser(?user $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getTyperepas(): ?Typerepas
+    {
+        return $this->typerepas;
+    }
+
+    public function setTyperepas(?Typerepas $typerepas): static
+    {
+        $this->typerepas = $typerepas;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Dosage>
+     */
+    public function getDosages(): Collection
+    {
+        return $this->dosages;
+    }
+
+    public function addDosage(Dosage $dosage): static
+    {
+        if (!$this->dosages->contains($dosage)) {
+            $this->dosages->add($dosage);
+            $dosage->setRecette($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDosage(Dosage $dosage): static
+    {
+        if ($this->dosages->removeElement($dosage)) {
+            // set the owning side to null (unless already changed)
+            if ($dosage->getRecette() === $this) {
+                $dosage->setRecette(null);
+            }
+        }
 
         return $this;
     }

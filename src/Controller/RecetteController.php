@@ -31,6 +31,9 @@ final class RecetteController extends AbstractController
         $form->handleRequest($request);
         // Vérification si le formulaire est soumis et Valide
         if($form->isSubmitted() && $form->isValid()){
+            if (!$recette->getId()) {
+                $recette->setUser($this->getUser());
+            }
             // Persistance des données
             $entityManager->persist($recette);
             // Envoi en BDD
