@@ -3,5 +3,81 @@
 {% block title %}Bienvenue sur Culimiam !{% endblock %}
 
 {% block body %}
-    <h1>Miam</h1>
+    <main>
+        <section class="hero">
+            <div class="container hero-layout">
+                <div class="hero-title">
+                    <h1>CuliMiam</h1>
+                    <p>simple, bon , miam</p>
+                    <a class="btn" href={{path('app_login')}}>Se connecter</a>
+                </div>
+                <div class="hero-img">
+                    <img src="{{ asset('assets/img/herobowl.png') }}" alt="bol de soupe miso">
+                </div>
+            </div>
+        </section>
+        
+        <section class="accueil">
+            <div class="container accueil-layout">
+                <div class="accueil-description">
+                    <h2>Culimiam, des recettes simples et gourmandes</h2>
+                    <div class="accueil-presentation">
+                        <div class="accueil-img">
+                            <img src="{{ asset('assets/img/presentation.jpg') }}" alt="tarte qui sort du four">
+                        </div>
+                        <div class="accueil-text">
+                            <p>
+                                Ici, tu trouveras des recettes testées et approuvées : rapides pour le quotidien, généreuses 
+                                pour les week-ends, et toujours expliquées étape par étape. Chaque recette détaille les 
+                                ingrédients nécessaires et te permet d’ajuster facilement les quantités selon le nombre de 
+                                personnes.
+                            </p>
+                            <p>
+                                Envie de partager tes propres idées ? L’ajout de recettes est réservé aux utilisateurs 
+                                inscrits. Il te suffit de créer un compte et de te connecter pour proposer tes plats, les 
+                                enregistrer et les retrouver facilement.
+                            </p>
+                            <p>
+                                Que tu cherches de l’inspiration ou que tu souhaites transmettre tes recettes préférées, 
+                                tout est pensé pour une cuisine simple, pratique et conviviale
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="last-recipe">
+                    {% if lastRecipe is empty %}
+                        <p>Aucune recette pour le moment.</p>
+                    {% else %}
+                        <h2>Nos derniere recettes</h2>
+                        <div class="last-recipe-cards">
+                            {% for recette in lastRecipe %}
+                                <div class="card">
+                                    <div class="card-img">
+                                        {% if recette.image %}
+                                            <img src="{{ asset('uploads/recipes/' ~ recette.image) }}" alt="{{ recette.titre }}">
+                                        {% endif %}
+                                    </div>
+                                    <div class="card-contain">
+                                        <p class="etiquette" style="background-color: {{ recette.typerepas.couleur }};">{{ recette.typerepas.type }}</p>
+
+                                        <h2 class="card-title">{{ recette.titre }}</h2>
+
+                                        <p class="card-personnes"><span>Pour : </span>{{ recette.nombrepersonne }} personnes</p>
+
+                                        <p class=" card-desciption"><span>Description : </span>{{ recette.description }}</p>
+
+                                        <p>Ajoutée par <span>{{ recette.user.pseudo }}</span></p>
+                                        
+                                        <a class="btn" href="">Voir plus</a>
+                                    </div>
+                                </div>
+                            {% endfor %}                       
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+
 {% endblock %}

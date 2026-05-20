@@ -1,1 +1,155 @@
+@use "../abstract/variable" as v;
 @use "../layout/header";
+@use "../layout/footer";
+
+
+//ACCUEIL HERO
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: v.$background-primary-color;
+}
+
+.hero-layout {
+    display: flex;
+    justify-content: space-between;
+    height: 80vh;
+    padding: 0 2rem;
+}
+
+.hero-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.hero h1 {
+    font-size: 64px;
+}
+
+.hero p {
+    font-family: v.$title-font;
+    font-size: 40px;
+}
+
+.hero-img {
+    display: flex;
+    width: 450px;
+    justify-content: center;
+}
+
+.hero-img img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+//ACCUEIL PRESENTATION
+
+.accueil {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("~/public/assets/img/bg-recettes.jpg");
+    background-repeat: repeat;
+    background-size: 100vw;
+}
+
+
+.accueil-layout {
+    margin-top: 4rem;
+}
+
+.accueil-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    background-color: v.$background-primary-color;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.accueil-presentation {
+    display: flex;
+    gap: 2rem;
+}
+
+.accueil-img {
+    width: 1/2;
+}
+
+.accueil-img img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.accueil-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+//ACCUEIL DERNIERE RECETTE
+
+.last-recipe {
+    display: flex;
+    flex-direction: column;
+    background-color: v.$background-primary-color;
+    border-radius: 10px;
+    padding: 2rem 0;
+    gap: 3rem;
+    margin: 4rem 0;
+}
+
+.last-recipe h2 {
+    text-align: center;
+}
+
+.last-recipe-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    justify-items: center;
+}
+
+//ACCUEIL MOBILE
+
+@media screen and (max-width: v.$medium) {
+    //HERO
+    .hero-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        justify-content: center;
+        padding: 1rem 0;
+    }
+    .hero-img {
+        display: flex;
+        width: 60%;
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: v.$theme-title-h1-accueil-mobile;
+    }
+    .hero p {
+        font-size: v.$theme-title-p-accueil-mobile;
+    }
+
+    //PRESENTATION
+
+    .accueil-presentation {
+        flex-direction: column;
+    }
+
+    //DERNIERE RECETTE
+    .last-recipe-cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+

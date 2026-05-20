@@ -1,0 +1,97 @@
+@use "../abstract/variable" as v;
+
+footer {
+    background-color: v.$background-secondary-color;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 3rem 0 1rem 0;
+    gap: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: v.$background-secondary-color;
+}
+
+.logo-footer-link {
+    display: flex;
+    align-items: center;
+}
+
+.logo-footer {
+    width: 95px;
+    height: 95px;
+}
+
+.logo-footer img {
+    width: 100%;
+    height: 100%;
+}
+
+.links-menu-footer {
+    display: flex;
+    flex-direction: column;
+    background-color: v.$background-secondary-color;
+    gap: 1.5rem;
+}
+
+.links-menu-footer a {
+    display: inline-block;
+    font-size: 16px;
+    color: v.$text-primary-color;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+}
+
+.links-menu-footer nav ul li a:hover {
+    transform: scale(1.1);
+}
+
+.socials {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.socials a {
+    display: flex;
+    width: 80px;
+    height: 80px;
+}
+
+.socials a img {
+    width: 100%;
+}
+
+.copyright {
+    color: v.$text-primary-color;
+    font-family: 16px;
+}
+
+@media screen and (max-width: v.$medium) {
+    .links-menu-footer a {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: v.$small) {
+    .links-menu-footer a {
+        font-size: 20px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    .links-menu-footer {
+        align-items: center;
+    }
+}

@@ -1,6 +1,6 @@
 @use "../abstract/variable" as v;
 
-nav {
+header nav {
     display: flex;
     align-items: center;
     background-color: v.$text-secondary-color;
@@ -21,14 +21,14 @@ a:has(.logo) {
     height: 100%;
 }
 
-nav ul {
+header nav ul {
     display: flex;
     margin-left: auto;
     margin-right: 80px;
     gap: 2rem;
 }
 
-nav ul li a {
+header nav ul li a {
     display: inline-block;
     font-family: "Work_Sans-regular";
     color: v.$text-primary-color;
@@ -37,7 +37,7 @@ nav ul li a {
     transition: transform 0.2s ease;
 }
 
-nav ul li a:hover {
+header nav ul li a:hover {
     transform: scale(1.1);
 }
 
@@ -56,7 +56,7 @@ nav ul li a:hover {
 
 @media screen and (max-width: v.$medium) {
 
-    nav {
+    header nav {
         justify-content: space-between;
         padding: 0 10rem;
     }
@@ -75,7 +75,7 @@ nav ul li a:hover {
         margin: 10px;
     }
 
-    nav ul {
+    header nav ul {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -105,12 +105,12 @@ nav ul li a:hover {
         z-index: 2;
     }
 
-    nav .nav-menu {
+    header nav .nav-menu {
         max-height: 500px;
         opacity: 1;
     }
 
-    nav ul li {
+    header nav ul li {
         width: 100%;
         display: flex;
         justify-content: center;
@@ -118,7 +118,7 @@ nav ul li a:hover {
         border-top: 1px solid v.$text-primary-color;
     }
 
-    nav ul li a {
+    header nav ul li a {
         padding: 2rem;
         font-size: 20px;
     }
@@ -127,7 +127,7 @@ nav ul li a:hover {
 //MOBILE
 
 @media screen and (max-width: v.$small) {
-    nav {
+    header nav {
         padding: 0 4rem;
     }
 }

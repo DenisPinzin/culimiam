@@ -9,6 +9,13 @@
 
 	{{form_start(recetteForm)}}
 	    {{form_widget(recetteForm)}}
+		<div class="ingredient-zone">
+            <input type="text" id="ingredient-search" placeholder="Rechercher un ingrédient">
+
+            <div id="ingredient-results"></div>
+
+            <div id="selected-ingredients"></div>
+        </div>
 	    <button>{{ isModification ? 'Modifier' :  'Ajouter' }}</button>
 	{{form_end(recetteForm)}}
 {% endblock %}
