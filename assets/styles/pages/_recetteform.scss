@@ -1,0 +1,53 @@
+@use "../abstract/variable" as v;
+
+.main-recetteform {
+    background-image: url("~/public/assets/img/bg-ajouter.jpg");
+}
+
+.main-recetteform .form-contain {
+    margin: 4rem 0;
+}
+
+#ingredient-results {
+    background-color: #ebebe0;
+    width: 100%;
+}
+
+#ingredient-results :hover{
+ background-color: blue;
+ color: white;
+}
+
+.recipe{
+    display: flex;
+}
+
+.main-recetteform .btn {
+    width: fit-content;
+    align-self: center;
+    padding: 1rem;
+}
+
+#selected-ingredients div {
+    border-bottom: 1px solid gray;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.remove-ingredient {
+    margin-left: auto;
+}
+
+@media screen and (max-width: v.$medium) {
+    .recipe {
+        flex-direction: column;
+    }
+
+    .main-recetteform .btn {
+        width: fit-content;
+        align-self: center;
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+}

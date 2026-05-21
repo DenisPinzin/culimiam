@@ -51,6 +51,23 @@ form .form-field {
     padding: 0.5rem;
 }
 
+textarea {
+    border-radius: 10px;
+    background-color: v.$background-tertiary-color;
+    border-color: v.$background-tertiary-color;
+    border-color: grey;
+    min-height: 4rem;
+    padding: 0.5rem;
+}
+
+select {
+    border-radius: 10px;
+    background-color: v.$background-tertiary-color;
+    border-color: v.$background-tertiary-color;
+    border-color: grey;
+    padding: 0.5rem;
+}
+
 @media screen and (max-width: v.$medium) {
     .form-contain form {
         width: 90%;

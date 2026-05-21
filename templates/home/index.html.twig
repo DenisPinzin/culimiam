@@ -9,7 +9,11 @@
                 <div class="hero-title">
                     <h1>CuliMiam</h1>
                     <p>simple, bon , miam</p>
-                    <a class="btn" href={{path('app_login')}}>Se connecter</a>
+                    {% if is_granted('ROLE_USER') %}
+                        <a class="btn" href={{path('app_recettes')}}>Nos recettes</a>
+                    {% else %}
+                        <a class="btn" href={{path('app_login')}}>Se connecter</a>
+                    {% endif %}
                 </div>
                 <div class="hero-img">
                     <img src="{{ asset('assets/img/herobowl.png') }}" alt="bol de soupe miso">

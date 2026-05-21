@@ -33,7 +33,7 @@ menu.addEventListener('click', function (menu){
 const input = document.querySelector('#ingredient-search');
 //zone d'affichage
 const results = document.querySelector('#ingredient-results');
-// zone des ingredient cliqué
+//zone des ingredient cliqué
 const selected = document.querySelector('#selected-ingredients');
 
 // si l'input existe
@@ -66,20 +66,52 @@ if (input) {
             const div = document.createElement('div');
             //affiche le texte dans la div (farine)
             div.textContent = ingredient.nom;
+
             //quand on clique sur un ingrédient
             div.addEventListener('click', () => {
+
+                //Crée une constante qui va compté le nombre d'ingredient
+                const ingredientCount = selected.children.length;
+                //si le bombre d'ingrédients est superieur à 20 un message d'alerte s'affiche et annule l'ajout
+                if (ingredientCount >= 20) {
+                    alert('Maximum 20 ingrédients');
+                    return;
+                }
+
                 //on ajoute l'ingrédient dans la liste sélectionnée
                 selected.insertAdjacentHTML('beforeend', `
-                    <div>
+                    <div class="recipe">
                         <input type="hidden" name="ingredients[]" value="${ingredient.id}">
 
-                        <span>${ingredient.nom}</span>
+                        <span>${ingredient.nom}: </span>
+                        <div>
+                            <input type="number" name="dosages[${ingredient.id}]" placeholder="Dosage"  min="1"  max="100000">
 
-                        <input type="number" name="dosages[${ingredient.id}]" placeholder="Dosage">
+                            <span> ${ingredient.mesure}</span>
 
-                        <span>${ingredient.mesure}</span>
+                            <button type="button" class="remove-ingredient btn">
+                                X
+                            </button>
+                        </div>
+
+
                     </div>
                 `);
+
+                // récupération du dernier ingrédient ajouté
+                const lastIngredient = selected.lastElementChild;
+
+
+                // récupération du bouton supprimer
+                const removeButton = lastIngredient.querySelector('.remove-ingredient');
+
+
+                // suppression au clic
+                removeButton.addEventListener('click', () => {
+
+                    lastIngredient.remove();
+                });
+
                 //on vide l'input de recherche
                 input.value = '';
                 //on vide les résultats affichés

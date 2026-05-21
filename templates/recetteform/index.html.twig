@@ -3,19 +3,59 @@
 {% block title %}Hello RecetteController!{% endblock %}
 
 {% block body %}
+	<main class="main-form main-recetteform">
+		<div class="container form-contain">
+			{# Ternaire pour vérifier l'existance de la variable 'isModification' #}
+			<h1> {{ isModification ? 'Modifier une recette' :  'Ajouter une recette' }}</h1>
 
-	{# Ternaire pour vérifier l'existance de la variable 'isModification' #}
-	<h1> {{ isModification ? 'Modifier une recette' :  'Ajouter une recette' }}</h1>
+			{{ form_start(recetteForm) }}
 
-	{{form_start(recetteForm)}}
-	    {{form_widget(recetteForm)}}
-		<div class="ingredient-zone">
-            <input type="text" id="ingredient-search" placeholder="Rechercher un ingrédient">
+				<div class="form-field">
+					{{ form_label(recetteForm.titre, 'Nom de la recette') }}
+					{{ form_widget(recetteForm.titre) }}
+				</div>
 
-            <div id="ingredient-results"></div>
+				<div class="form-field">
+					{{ form_label(recetteForm.nombrepersonne, 'Nombre de personne') }}
+					{{ form_widget(recetteForm.nombrepersonne) }}
+				</div>
 
-            <div id="selected-ingredients"></div>
-        </div>
-	    <button>{{ isModification ? 'Modifier' :  'Ajouter' }}</button>
-	{{form_end(recetteForm)}}
+				<div class="form-field">
+					{{ form_label(recetteForm.description) }}
+					<p>(Donnez une description à votre recette, pour donné envie à vos lecteurs d’y gouté)</p>
+					{{ form_widget(recetteForm.description) }}
+				</div>
+
+				<div class="form-field">
+					{{ form_label(recetteForm.typerepas, 'Type de repas') }}
+					<p>(Entrée, plat ou dessert...)</p>
+					{{ form_widget(recetteForm.typerepas) }}
+				</div>
+
+				<div class="form-field">
+					{{ form_label(recetteForm.image) }}
+					{{ form_widget(recetteForm.image) }}
+				</div>
+
+				<div class="ingredient-zone form-field">
+					<label for="ingredient-search">Ingredients</label>
+					<p>(Pour chaque ingredient tapez son nom et selectionnez-le pour l’ajouter à votre liste)</p>
+					<input type="text" id="ingredient-search" placeholder="Rechercher un ingrédient">
+					<div id="ingredient-results"></div>
+					<div id="selected-ingredients"></div>
+				</div>
+
+				<div class="form-field">
+					{{ form_label(recetteForm.preparation) }}
+					<p>(Ecrivez ici chaque étapes de preparation de votre recette.)</p>
+					{{ form_widget(recetteForm.preparation) }}
+				</div>
+
+				<button class="btn">
+					{{ isModification ? 'Modifier' : 'Ajouter' }}
+				</button>
+
+			{{ form_end(recetteForm) }}
+		</div>
+	</main>
 {% endblock %}
