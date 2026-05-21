@@ -4,8 +4,10 @@ namespace App\Form;
 
 use App\Entity\Recette;
 use App\Entity\Typerepas;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -53,7 +55,21 @@ class RecetteType extends AbstractType
                 ],
             ])
             
-            ->add('image')
+            ->add('imageFile', FileType::class,[ //Champ de fichier
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2M', //Ajout de contrainte (Optionnel)
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/jpg',
+                            'image/png',
+                            'image/webp',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez télécharger un fichier au format JPEG, JPG, PNG ou WEBP.'
+                    ])
+                ]
+            ])
 
             ->add('typerepas', EntityType::class, [
                 'class' => Typerepas::class,

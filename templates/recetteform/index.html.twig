@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RecetteController!{% endblock %}
+{% block title %}Formulaire d'ajout pour de nouvelles recettes !{% endblock %}
 
 {% block body %}
 	<main class="main-form main-recetteform">
@@ -33,16 +33,36 @@
 				</div>
 
 				<div class="form-field">
-					{{ form_label(recetteForm.image) }}
-					{{ form_widget(recetteForm.image) }}
+					{{ form_row(recetteForm.imageFile) }}
 				</div>
-
 				<div class="ingredient-zone form-field">
 					<label for="ingredient-search">Ingredients</label>
 					<p>(Pour chaque ingredient tapez son nom et selectionnez-le pour l’ajouter à votre liste)</p>
 					<input type="text" id="ingredient-search" placeholder="Rechercher un ingrédient">
 					<div id="ingredient-results"></div>
-					<div id="selected-ingredients"></div>
+					<div id="selected-ingredients">
+						{% for dosage in recette.dosages %}
+							<div class="recipe">
+								<input type="hidden" name="ingredients[]" value="{{ dosage.ingredient.id }}">
+
+								<span>{{ dosage.ingredient.nom }}:</span>
+
+								<div>
+									<input
+										type="number"
+										name="dosages[{{ dosage.ingredient.id }}]"
+										value="{{ dosage.dosage }}"
+										min="1"
+										max="100000"
+									>
+
+									<span>{{ dosage.ingredient.mesure }}</span>
+
+									<button type="button" class="remove-ingredient btn">X</button>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
 				</div>
 
 				<div class="form-field">

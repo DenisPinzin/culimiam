@@ -3,11 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\RecetteRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: RecetteRepository::class)]
 class Recette
 {
@@ -38,6 +42,18 @@ class Recette
     #[ORM\ManyToOne(inversedBy: 'recette')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Typerepas $typerepas = null;
+
+    //IMG PART--------
+    #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'imageName')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $imageName = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?DateTimeImmutable $updatedAt = null;
+
+    //IMG PART END--------
 
     /**
      * @var Collection<int, Dosage>
@@ -167,5 +183,29 @@ class Recette
         }
 
         return $this;
+    }
+
+        public function setImageFile(?File $imageFile = null):void
+    {
+        $this->imageFile = $imageFile;
+
+        if ($imageFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageName(?string $imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
     }
 }

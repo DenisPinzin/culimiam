@@ -26,8 +26,12 @@
             {% for recette in recettes %}
                 <div class="card">
                     <div class="card-img">
-                        {% if recette.image %}
-                            <img src="{{ asset('uploads/recipes/' ~ recette.image) }}" alt="{{ recette.titre }}">
+                        {% if recette.imageName %}
+                            <img src="{{ asset('images/upload/' ~ recette.imageName) }}" alt="{{ recette.titre }}">
+                        {% else %}
+                            <div class="no-img">
+                                <p>Pas d'image</p>
+                            </div>
                         {% endif %}
                     </div>
                     <div class="card-contain">
@@ -41,7 +45,7 @@
 
                         <p>Ajoutée par <span>{{ recette.user.pseudo }}</span></p>
                         
-                        <a class="btn" href="">Voir plus</a>
+                        <a class="btn" href={{ path('show_recette', { id: recette.id }) }}>Voir plus</a>
                     </div>
                 </div>
             {% else %}

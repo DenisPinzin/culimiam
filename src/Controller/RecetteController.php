@@ -14,17 +14,25 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class RecetteController extends AbstractController
-{
+{   
+    //CREATION, MODIFICATION
     #[Route('/recetteform/{id}', name: 'modify_recette')]
     #[Route('/recetteform', name: 'app_recette')]
     public function index(?Recette $recette, Request $request, EntityManagerInterface $entityManager, IngredientRepository $ingredientRepository): Response
     {   
-
+    
         // Vérification si l'objet existe via l'injection de dependance
         // Si injection de dependance = On est en Modification
         // Sinon, on est un Creation et on créé l'objet
         if(!$recette){
             $recette = new recette;
+        }
+
+        // si la recette existe ET qu'elle n'appartient pas au user connecté
+        if ($recette->getId() && $recette->getUser() !== $this->getUser()) {
+
+            // interdit l'accès
+            throw $this->createAccessDeniedException();
         }
 
         // Récupération du formulaire et association avec l'objet
@@ -38,6 +46,11 @@ final class RecetteController extends AbstractController
                 $recette->setUser($this->getUser());
             }
 
+            foreach ($recette->getDosages()->toArray() as $oldDosage) {
+                $entityManager->remove($oldDosage);
+            }
+
+            $entityManager->flush();
             $ingredients = $request->request->all('ingredients');
             $dosages = $request->request->all('dosages');
             
@@ -62,13 +75,30 @@ final class RecetteController extends AbstractController
 
         return $this->render('recetteform/index.html.twig', [
             'recetteForm' => $form->createView(), //envoie du formulaire en VUE
-            'isModification' => $recette->getId() !== null //Envoie d'un variable pour définir si on est en Modif ou Créa
+            'isModification' => $recette->getId() !== null, //Envoie d'un variable pour définir si on est en Modif ou Créa
+            'recette' => $recette,
         ]);
     }
 
+    //ENVOIE EN VUE DANS LE TWIG SHOW
+    #[Route('/recette/{id}', name: 'show_recette')]
+    public function show(Recette $recette): Response
+    {
+        return $this->render('show/index.html.twig', [
+            'recette' => $recette,
+        ]);
+    }
+
+    //SUPPRESSION
     #[Route('/recette/remove/{id}', name: 'delete_recette')]
     public function remove(Recette $recette, Request $request, EntityManagerInterface $entityManager)
-    {
+    {   
+        // si la recette n'appartient pas au user connecté
+        if ($recette->getUser() !== $this->getUser()) {
+
+            // interdit l'accès
+            throw $this->createAccessDeniedException();
+        }
         
         if($this->isCsrfTokenValid('SUP'.$recette->getId(),$request->get('_token'))){
             $entityManager->remove($recette);

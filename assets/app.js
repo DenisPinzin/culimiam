@@ -36,6 +36,20 @@ const results = document.querySelector('#ingredient-results');
 //zone des ingredient cliqué
 const selected = document.querySelector('#selected-ingredients');
 
+// suppression d'un ingrédient
+if (selected) {
+
+    selected.addEventListener('click', (e) => {
+
+        // vérifie si on clique sur un bouton supprimer
+        if (e.target.classList.contains('remove-ingredient')) {
+
+            // supprime le bloc ingrédient
+            e.target.closest('.recipe').remove();
+        }
+    });
+}
+
 // si l'input existe
 if (input) {
 
@@ -78,6 +92,18 @@ if (input) {
                     return;
                 }
 
+                // recherche dans les ingrédients déjà sélectionnés
+                const alreadySelected = selected.querySelector(
+                    `input[name="ingredients[]"][value="${ingredient.id}"]`
+                );
+
+                // arrête la fonction pour empêcher le doublon
+                if (alreadySelected) {
+                    
+                    alert('Cet ingrédient est déjà ajouté');
+                    return;
+                }
+
                 //on ajoute l'ingrédient dans la liste sélectionnée
                 selected.insertAdjacentHTML('beforeend', `
                     <div class="recipe">
@@ -97,21 +123,6 @@ if (input) {
 
                     </div>
                 `);
-
-                // récupération du dernier ingrédient ajouté
-                const lastIngredient = selected.lastElementChild;
-
-
-                // récupération du bouton supprimer
-                const removeButton = lastIngredient.querySelector('.remove-ingredient');
-
-
-                // suppression au clic
-                removeButton.addEventListener('click', () => {
-
-                    lastIngredient.remove();
-                });
-
                 //on vide l'input de recherche
                 input.value = '';
                 //on vide les résultats affichés
