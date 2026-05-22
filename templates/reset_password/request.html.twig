@@ -3,6 +3,11 @@
 {% block title %}Envoi du mail pour changement de mot de passe!{% endblock %}
 
 {% block body %}
+        {% for message in app.flashes('success') %}
+            <div>
+                {{ message }}
+            </div>
+        {% endfor %}
     {{ form_start(requestForm) }}
         {{ form_row(requestForm.email) }}
 

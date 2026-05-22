@@ -4,6 +4,7 @@
 
 {% block body %}
     <main>
+        {# HERO #}
         <section class="hero">
             <div class="container hero-layout">
                 <div class="hero-title">
@@ -21,9 +22,10 @@
             </div>
         </section>
         
+        {# ACCUEIL #}
         <section class="accueil">
-            <div class="container accueil-layout">
-                <div class="accueil-description">
+            <div class="container">
+                <div class="section-box">
                     <h2>Culimiam, des recettes simples et gourmandes</h2>
                     <div class="accueil-presentation">
                         <div class="accueil-img">
@@ -48,12 +50,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="last-recipe">
+                <div class="section-box">
                     {% if lastRecipe is empty %}
                         <p>Aucune recette pour le moment.</p>
                     {% else %}
                         <h2>Nos derniere recettes</h2>
-                        <div class="last-recipe-cards">
+                        <div class="card-display">
                             {% for recette in lastRecipe %}
                                 <div class="card">
                                     <div class="card-img">

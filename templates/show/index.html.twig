@@ -5,55 +5,58 @@
 {% block body %}
     <main>
         <section class="detail-bg">
-            <div class="container detail-contain">
-                <div class="detail-img">
-                    {% if recette.imageName %}
-                        <div  class="show-img">
-                            <img src="{{ asset('images/upload/' ~ recette.imageName) }}" alt="{{ recette.titre }}">
+            <div class="container">
+                <div class="section-box">
+                    <div class="detail-contain">
+                        <div class="detail-img">
+                            {% if recette.imageName %}
+                                <div  class="show-img">
+                                    <img src="{{ asset('images/upload/' ~ recette.imageName) }}" alt="{{ recette.titre }}">
+                                </div>
+                            {% else %}
+                                <div class="no-img">
+                                    <p>Pas d'image</p>
+                                </div>
+                            {% endif %}
                         </div>
-                    {% else %}
-                        <div class="no-img">
-                            <p>Pas d'image</p>
+                        <h1>{{ recette.titre }}</h1>
+                        <p class="etiquette" style="background-color: {{ recette.typerepas.couleur }};">{{ recette.typerepas.type }}</p>
+                        
+                        <p><span>Pour : </span>{{ recette.nombrepersonne }} personnes</p>
+
+                        <p><span>Description : </span>{{ recette.description }}</p>
+
+                        <p>Ajoutée par <span>{{ recette.user.pseudo }}</span></p>
+                        
+                        <div class="detail-interlign">
+                            <h3 class="details-sections">Ingredients</h3>
+                            {% for dosage in recette.dosages %}
+                                <p>_ 
+                                    {{ dosage.ingredient.nom }}
+                                    -
+                                    {{ dosage.dosage }}
+                                    {{ dosage.ingredient.mesure }}
+                                </p>
+                            {% endfor %}
                         </div>
-                    {% endif %}
+
+                        <div class="detail-interlign">
+                            <h3 class="details-sections">Preparation</h3>
+                            <p>{{ recette.preparation|nl2br }}</p>
+                        </div>
+
+                        {% if app.user == recette.user %}
+                        <div class="bloc-btn">
+                            <a class="btn" href="{{ path('modify_recette', {'id': recette.id}) }}">Modifier</a>
+                            <form method="POST" onsubmit="return confirm('Confirmer la suppression?')" action="{{ path('delete_recette', {'id': recette.id}) }}">
+                                <input type="hidden" name="_method" value="delete">
+                                <input type="hidden" name="_token" value="{{ csrf_token('SUP' ~ recette.id) }}">
+                                <button class="btn_suppr">Suppimer</button>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
                 </div>
-                <h1>{{ recette.titre }}</h1>
-                <p class="etiquette" style="background-color: {{ recette.typerepas.couleur }};">{{ recette.typerepas.type }}</p>
-                
-                <p><span>Pour : </span>{{ recette.nombrepersonne }} personnes</p>
-
-                <p><span>Description : </span>{{ recette.description }}</p>
-
-                <p>Ajoutée par <span>{{ recette.user.pseudo }}</span></p>
-                
-                <div class="detail-interlign">
-                    <p class="details-sections">Ingredients</p>
-                    {% for dosage in recette.dosages %}
-                        <p>_ 
-                            {{ dosage.ingredient.nom }}
-                            -
-                            {{ dosage.dosage }}
-                            {{ dosage.ingredient.mesure }}
-                        </p>
-                    {% endfor %}
-                </div>
-
-                <div class="detail-interlign">
-                    <p class="details-sections">Preparation</p>
-                    <p>{{ recette.preparation|nl2br }}</p>
-                </div>
-
-                {% if app.user == recette.user %}
-                <div class="detail-btn">
-                    <a class="btn" href="{{ path('modify_recette', {'id': recette.id}) }}">Modifier</a>
-                    <form method="POST" onsubmit="return confirm('Confirmer la suppression?')" action="{{ path('delete_recette', {'id': recette.id}) }}">
-                        <input type="hidden" name="_method" value="delete">
-                        <input type="hidden" name="_token" value="{{ csrf_token('SUP' ~ recette.id) }}">
-                        <button class="btn_suppr">Suppimer</button>
-                    </form>
-                </div>
-                {% endif %}
-
             </div>
         </section>
     </main>

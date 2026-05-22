@@ -22,35 +22,40 @@
         </div>
     </section>
     <section class="all-recettes">
-        <div class="container card-display">
-            {% for recette in recettes %}
-                <div class="card">
-                    <div class="card-img">
-                        {% if recette.imageName %}
-                            <img src="{{ asset('images/upload/' ~ recette.imageName) }}" alt="{{ recette.titre }}">
-                        {% else %}
-                            <div class="no-img">
-                                <p>Pas d'image</p>
+        <div class="container">
+            <div class="section-box">
+                <div class="card-display ">
+                    {% for recette in recettes %}
+                        <div class="card">
+                            <div class="card-img">
+                                {% if recette.imageName %}
+                                    <img src="{{ asset('images/upload/' ~ recette.imageName) }}" alt="{{ recette.titre }}">
+                                {% else %}
+                                    <div class="no-img">
+                                        <p>Pas d'image</p>
+                                    </div>
+                                {% endif %}
                             </div>
-                        {% endif %}
-                    </div>
-                    <div class="card-contain">
-                        <p class="etiquette" style="background-color: {{ recette.typerepas.couleur }};">{{ recette.typerepas.type }}</p>
+                            <div class="card-contain">
+                                <p class="etiquette" style="background-color: {{ recette.typerepas.couleur }};">{{ recette.typerepas.type }}</p>
 
-                        <h2 class="card-title">{{ recette.titre }}</h2>
+                                <h2 class="card-title">{{ recette.titre }}</h2>
 
-                        <p class="card-personnes"><span>Pour : </span>{{ recette.nombrepersonne }} personnes</p>
+                                <p class="card-personnes"><span>Pour : </span>{{ recette.nombrepersonne }} personnes</p>
 
-                        <p class=" card-desciption"><span>Description : </span>{{ recette.description }}</p>
+                                <p class=" card-desciption"><span>Description : </span>{{ recette.description }}</p>
 
-                        <p>Ajoutée par <span>{{ recette.user.pseudo }}</span></p>
-                        
-                        <a class="btn" href={{ path('show_recette', { id: recette.id }) }}>Voir plus</a>
-                    </div>
+                                <p>Ajoutée par <span>{{ recette.user.pseudo }}</span></p>
+                                
+                                <a class="btn" href={{ path('show_recette', { id: recette.id }) }}>Voir plus</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <p>Aucune recette pour le moment.</p>
+                    {% endfor %}               
                 </div>
-            {% else %}
-                <p>Aucune recette pour le moment.</p>
-            {% endfor %}
+
+            </div>
         </div>
     </section>
 {% endblock %}

@@ -28,7 +28,7 @@ final class RecetteController extends AbstractController
             $recette = new recette;
         }
 
-        // si la recette existe ET qu'elle n'appartient pas au user connecté
+        // si la recette existe et qu'elle n'appartient pas au user connecté
         if ($recette->getId() && $recette->getUser() !== $this->getUser()) {
 
             // interdit l'accès
@@ -109,31 +109,20 @@ final class RecetteController extends AbstractController
         }
     }
 
-    //RECHERCHER D'INGREDIENT
+    //RECHERCHE D'INGREDIENT
     #[Route('/ingredient/search', name: 'ingredient_search')]
     public function searchIngredient( Request $request, IngredientRepository $ingredientRepository): JsonResponse 
     {
         // récupération de ce que tape l'utilisateur dans l'input depuis JS
         $query = $request->query->get('q', '');
 
-        // recherche SQL
-        $ingredients = $ingredientRepository
-            ->createQueryBuilder('i')
-
-            ->where('i.nom LIKE :query')
-
-            ->setParameter('query', '%' . $query . '%')
-
-            ->setMaxResults(10)
-
-            ->getQuery()
-
-            ->getResult();
+        // appel de la méthode du repository
+        $ingredients = $ingredientRepository->searchByName($query);
 
         // tableau qui sera envoyé en JSON
         $data = [];
 
-        // transformation des objets nngredient en tableau JSON
+        // transformation des objets ingredient en tableau JSON
         foreach ($ingredients as $ingredient) {
 
             $data[] = [

@@ -19,7 +19,7 @@ final class ContactController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
+            $data = $form->getData(); // récupération des champs de formulaire
 
             $email = (new Email())
                 ->from($data['email'])
@@ -30,7 +30,6 @@ final class ContactController extends AbstractController
                     "Email: {$data['email']}\n\n".
                     "Message: {$data['message']}\n"
                 );
-
                 $mailer->send($email);
         }
 

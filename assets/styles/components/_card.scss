@@ -1,5 +1,17 @@
 @use "../abstract/variable" as v;
 
+.card-display {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    justify-items: center;
+    width: 100%;
+}
+
+.card-display h2 {
+    text-align: center;
+}
+
 .card {
     width: 253px;
     min-height: 455px;

@@ -1,15 +1,12 @@
 @use "../abstract/variable" as v;
+@use "../layout/form";
 
 .main-recetteform {
     background-image: url("~/public/assets/img/bg-ajouter.jpg");
 }
 
-.main-recetteform .form-contain {
-    margin: 4rem 0;
-}
-
 #ingredient-results {
-    background-color: #ebebe0;
+    background-color: v.$background-primary-color;
     width: 100%;
 }
 
@@ -20,12 +17,6 @@
 
 .recipe{
     display: flex;
-}
-
-.main-recetteform .btn {
-    width: fit-content;
-    align-self: center;
-    padding: 1rem;
 }
 
 #selected-ingredients div {
@@ -42,12 +33,5 @@
 @media screen and (max-width: v.$medium) {
     .recipe {
         flex-direction: column;
-    }
-
-    .main-recetteform .btn {
-        width: fit-content;
-        align-self: center;
-        padding: 0.5rem;
-        font-size: 1rem;
     }
 }
