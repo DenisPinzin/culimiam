@@ -6,6 +6,8 @@ use App\Entity\Ingredient;
 use App\Entity\Recette;
 use App\Entity\Typerepas;
 use App\Entity\User;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -15,8 +17,8 @@ use Symfony\Component\HttpFoundation\Response;
 #[AdminDashboard(routePath: '/admin', routeName: 'admin')]
 class DashboardController extends AbstractDashboardController
 {   
-    // #[IsGranted('ROLE_ADMIN')]
-    // #[Route('/admin', name: 'admin')]
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
         // return parent::index();

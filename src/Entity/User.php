@@ -43,6 +43,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Recette::class, mappedBy: 'user')]
     private Collection $recettes;
 
+    //Token de récupération
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $resetToken = null;
+
+    //Expiration du token
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeInterface $resetTokenExpiresAt = null;
+
     public function __construct()
     {
         $this->recettes = new ArrayCollection();
@@ -169,5 +177,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    //TOKEN DE RECUPERATION
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $resetToken): static
+    {
+        $this->resetToken = $resetToken;
+
+        return $this;
+    }
+
+    public function getResetTokenExpiresAt(): ?\DateTimeInterface
+    {
+        return $this->resetTokenExpiresAt;
+    }
+
+    public function setResetTokenExpiresAt(?\DateTimeInterface $resetTokenExpiresAt): static
+    {
+        $this->resetTokenExpiresAt = $resetTokenExpiresAt;
+
+        return $this;
+    }
+
+    public function isResetTokenValid(): bool
+    {
+        return $this->resetTokenExpiresAt !== null && $this->resetTokenExpiresAt > new \DateTime();
     }
 }

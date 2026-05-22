@@ -65,7 +65,7 @@ if (input) {
             return;
         }
 
-        //on envoie une requête à Symfony avec ce qu'on a écrit dans l'input (=${far})
+        //on envoie une requête à Symfony avec ce qu'on a écrit dans l'input (=${farine})
         const response = await fetch(`/ingredient/search?q=${query}`);
 
         //on transforme la reponse json en tableau
