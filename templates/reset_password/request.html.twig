@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Envoi du mail pour changement de mot de passe!{% endblock %}
+
+{% block body %}
+    {{ form_start(requestForm) }}
+        {{ form_row(requestForm.email) }}
+
+        <button type="submit">Envoyer le lien</button>
+    {{ form_end(requestForm) }}
+{% endblock %}
