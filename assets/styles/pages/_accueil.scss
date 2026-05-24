@@ -38,13 +38,15 @@
 
 .hero-img {
     display: flex;
+    align-self: center;
     width: 450px;
+    height: 450px;
     justify-content: center;
 }
 
 .hero-img img {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -124,6 +126,11 @@
     }
     .hero p {
         font-size: v.$theme-title-p-accueil-mobile;
+    }
+
+    .hero-img {
+        width: auto;
+        height: auto;
     }
 
     //PRESENTATION

@@ -5,37 +5,42 @@
 {% block body %}
 	<main class="main-form main-register">
 		<div class="container">
-			<div>
-				<h1> S'incrire</h1>
+			<div class="section-box">
+				<div class="form-display">
+					<div>
+						<h1> S'incrire</h1>
+					</div>
+					{{ form_start(userForm) }}
+
+					<div class="form-field">
+						{{ form_label(userForm.pseudo) }}
+						{{ form_widget(userForm.pseudo) }}
+					</div>
+
+					<div class="form-field">
+						{{ form_label(userForm.email) }}
+						{{ form_widget(userForm.email) }}
+					</div>
+
+					<div class="form-field">
+						{{ form_label(userForm.password.first) }}
+						{{ form_widget(userForm.password.first) }}
+					</div>
+
+					<div class="form-field">
+						{{ form_label(userForm.password.second) }}
+						{{ form_widget(userForm.password.second) }}
+					</div>
+
+					<div class="bloc-btn">
+						<button class="btn">Valider</button>
+					</div>
+
+
+					{{ form_end(userForm) }}
+				</div>
 			</div>
-			{{ form_start(userForm) }}
 
-			<div class="form-field">
-				{{ form_label(userForm.pseudo) }}
-				{{ form_widget(userForm.pseudo) }}
-			</div>
-
-			<div class="form-field">
-				{{ form_label(userForm.email) }}
-				{{ form_widget(userForm.email) }}
-			</div>
-
-			<div class="form-field">
-				{{ form_label(userForm.password.first) }}
-				{{ form_widget(userForm.password.first) }}
-			</div>
-
-			<div class="form-field">
-				{{ form_label(userForm.password.second) }}
-				{{ form_widget(userForm.password.second) }}
-			</div>
-
-			<div class="submit-btn-container">
-				<button class="btn">Valider</button>
-			</div>
-
-
-			{{ form_end(userForm) }}
 		</div>
 	</main>
 
