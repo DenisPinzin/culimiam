@@ -14,23 +14,27 @@
 
 						<div class="form-field">
 							{{ form_label(recetteForm.titre, 'Nom de la recette') }}
+							{{ form_errors(recetteForm.titre) }}
 							{{ form_widget(recetteForm.titre) }}
 						</div>
 
 						<div class="form-field">
 							{{ form_label(recetteForm.nombrepersonne, 'Nombre de personne') }}
+							{{ form_errors(recetteForm.nombrepersonne) }}
 							{{ form_widget(recetteForm.nombrepersonne) }}
 						</div>
 
 						<div class="form-field">
 							{{ form_label(recetteForm.description) }}
 							<p>(Donnez une description à votre recette, pour donné envie à vos lecteurs d’y gouté)</p>
+							{{ form_errors(recetteForm.description) }}
 							{{ form_widget(recetteForm.description) }}
 						</div>
 
 						<div class="form-field">
 							{{ form_label(recetteForm.typerepas, 'Type de repas') }}
 							<p>(Entrée, plat ou dessert...)</p>
+							{{ form_errors(recetteForm.typerepas) }}
 							{{ form_widget(recetteForm.typerepas) }}
 						</div>
 
@@ -70,6 +74,7 @@
 						<div class="form-field">
 							{{ form_label(recetteForm.preparation) }}
 							<p>(Ecrivez ici chaque étapes de preparation de votre recette.)</p>
+							{{ form_errors(recetteForm.preparation) }}
 							{{ form_widget(recetteForm.preparation) }}
 						</div>
 						<div class="bloc-btn">

@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\RateLimiter\RateLimiterFactory;
 
 class SecurityController extends AbstractController
 {
@@ -41,7 +42,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/inscription', name: 'app_register')]
-    public function register(Request $request,UserPasswordHasherInterface $passwordEncoder,EntityManagerInterface $entityManager,AuthenticationUtils $authenticationUtils): Response
+    public function register(Request $request,UserPasswordHasherInterface $passwordEncoder,EntityManagerInterface $entityManager,AuthenticationUtils $authenticationUtils,RateLimiterFactory $registrationLimiter): Response
     {   
 
         //Sécuriser si deja connecté
@@ -52,16 +53,33 @@ class SecurityController extends AbstractController
         // Vérification si l'objet existe via l'injection de dependance
         // Si injection de dependance = On est en Modification
         // Sinon, on est un Creation et on créé l'objet
-        
+    
         $user = new User;
       
-        
 
         // Récupération du formulaire et association avec l'objet
         $form = $this->createForm(UserType::class,$user);
 
         // Récupération des données POST du formulaire
         $form->handleRequest($request);
+
+        //A la soumission du formulaire 
+        if ($form->isSubmitted()) {
+            //Crée un compteur associé à son ip
+            $limit = $registrationLimiter
+                //IP (Créer ou le récupérer)
+                ->create($request->getClientIp())
+                //Enleve une tentative
+                ->consume();
+            //si la limite est dépassée
+            if (!$limit->isAccepted()) {
+                //message
+                $this->addFlash('danger', 'Trop de tentatives d’inscription. Réessayez plus tard.');
+                //Renvoie le sur la page d'insciption sans l'authentification
+                return $this->redirectToRoute('app_register');
+            }
+        }
+
         // Vérification si le formulaire est soumis et Valide
         if($form->isSubmitted() && $form->isValid()){
             $user->setRoles(['ROLE_USER']);

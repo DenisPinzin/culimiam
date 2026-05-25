@@ -15,15 +15,27 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\RateLimiter\RateLimiterFactory;
 
 
 final class ResetPasswordController extends AbstractController
 {
     #[Route('/reset/password', name: 'app_forgot_password')]
-    public function request(Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
+    public function request(Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager, MailerInterface $mailer, RateLimiterFactory $forgotPasswordLimiter): Response
     {
         $form = $this->createForm(ResetPasswordRequestFormType::class); // Creation du formulaire
         $form->handleRequest($request); // recuperation de la requête
+
+        if ($form->isSubmitted()) {
+            $limit = $forgotPasswordLimiter
+                ->create($request->getClientIp())
+                ->consume();
+
+            if (!$limit->isAccepted()) {
+                $this->addFlash('danger', 'Trop de demandes. Réessayez plus tard.');
+                return $this->redirectToRoute('app_forgot_password');
+            }
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $email = $form->get('email')->getData(); // recuperation du champ email dans une variable

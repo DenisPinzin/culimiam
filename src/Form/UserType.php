@@ -12,6 +12,8 @@ use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class UserType extends AbstractType
 {
@@ -19,7 +21,10 @@ class UserType extends AbstractType
     {
     $builder
 
-        ->add('pseudo', null, [
+        ->add('pseudo', TextType::class, [
+            'attr' => [
+                'placeholder' => 'Votre pseudo',
+            ],
             'constraints' => [
 
                 new NotBlank([
@@ -41,7 +46,10 @@ class UserType extends AbstractType
             ],
         ])
 
-        ->add('email', null, [
+        ->add('email', EmailType::class, [
+            'attr' => [
+                'placeholder' => 'Votre email',
+            ],
             'constraints' => [
 
                 new NotBlank([
@@ -70,10 +78,16 @@ class UserType extends AbstractType
 
             'first_options' => [
                 'label' => 'Mot de passe',
+                'attr' => [
+                    'placeholder' => 'Mot de passe',
+                ],
             ],
 
             'second_options' => [
                 'label' => 'Confirmer le mot de passe',
+                'attr' => [
+                    'placeholder' => 'Confirmation du mot de passe',
+                ],
             ],
 
             'constraints' => [

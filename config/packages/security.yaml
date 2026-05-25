@@ -42,6 +42,7 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/logout, roles: ROLE_USER }
+        - { path: ^/recette/remove, roles: ROLE_USER }
         - { path: ^/recetteform, roles: ROLE_USER }
         - { path: ^/login, roles: PUBLIC_ACCESS }
         - { path: ^/inscription, roles: PUBLIC_ACCESS }

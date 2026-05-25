@@ -11,6 +11,7 @@
                         <h1>Nouveau mot de passe</h1>
                     </div>
                     {{ form_start(resetForm) }}
+                        {{ form_errors(resetForm.plainPassword) }}
                         <div class="form-field">
                             {{ form_label(resetForm.plainPassword.first) }}
                             {{ form_errors(resetForm.plainPassword.first) }}

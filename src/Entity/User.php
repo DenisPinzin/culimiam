@@ -40,7 +40,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var Collection<int, Recette>
      */
-    #[ORM\OneToMany(targetEntity: Recette::class, mappedBy: 'user')]
+    #[ORM\OneToMany(targetEntity: Recette::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $recettes;
 
     //Token de récupération

@@ -12,13 +12,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\RateLimiter\RateLimiterFactory;
 
 final class RecetteController extends AbstractController
 {   
     //CREATION, MODIFICATION
     #[Route('/recetteform/{id}', name: 'modify_recette')]
     #[Route('/recetteform', name: 'app_recette')]
-    public function index(?Recette $recette, Request $request, EntityManagerInterface $entityManager, IngredientRepository $ingredientRepository): Response
+    public function index(?Recette $recette, Request $request, EntityManagerInterface $entityManager, IngredientRepository $ingredientRepository, RateLimiterFactory $recipeCreationLimiter): Response
     {   
     
         // Vérification si l'objet existe via l'injection de dependance
@@ -40,8 +41,25 @@ final class RecetteController extends AbstractController
 
         // Récupération des données POST du formulaire
         $form->handleRequest($request);
+
+        //limité le nombre de création de recette
+        if ($form->isSubmitted()) {
+            //// récupération du compteur lié à l'utilisateur et décrémentation d'une tentative
+            $limit = $recipeCreationLimiter
+                ->create($this->getUser()->getUserIdentifier())
+                ->consume();
+            //si le nombre d'essai est atteint
+            if (!$limit->isAccepted()) {
+                //on affiche le message suivant
+                $this->addFlash('danger', 'Vous avez atteint la limite de créations de recettes. Réessayez plus tard.');
+                //on est rediriger vers la même route
+                return $this->redirectToRoute('app_recettes');
+            }
+        }
+
         // Vérification si le formulaire est soumis et Valide
         if($form->isSubmitted() && $form->isValid()){
+            
             if (!$recette->getId()) {
                 $recette->setUser($this->getUser());
             }

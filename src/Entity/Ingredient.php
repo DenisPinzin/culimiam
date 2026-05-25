@@ -24,7 +24,7 @@ class Ingredient
     /**
      * @var Collection<int, dosage>
      */
-    #[ORM\OneToMany(targetEntity: dosage::class, mappedBy: 'ingredient', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: dosage::class, mappedBy: 'ingredient')]
     private Collection $dosage;
 
     public function __construct()

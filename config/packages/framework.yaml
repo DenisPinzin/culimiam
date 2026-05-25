@@ -5,6 +5,28 @@ framework:
     # Note that the session will be started ONLY if you read or write from it.
     session: true
 
+    rate_limiter:
+        forgot_password:
+            policy: 'fixed_window'
+            limit: 3
+            interval: '15 minutes'
+
+        contact:
+            policy: 'fixed_window'
+            limit: 5
+            interval: '10 minutes'
+
+        registration:
+            policy: 'fixed_window'
+            limit: 5
+            interval: '30 minutes'
+
+        recipe_creation:
+            policy: 'fixed_window'
+            limit: 5
+            interval: '1 hour'
+
+
     #esi: true
     #fragments: true
 

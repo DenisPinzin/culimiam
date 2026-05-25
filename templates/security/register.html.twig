@@ -12,23 +12,29 @@
 					</div>
 					{{ form_start(userForm) }}
 
+					    {{ form_errors(userForm.password) }}
+
 					<div class="form-field">
 						{{ form_label(userForm.pseudo) }}
+						{{ form_errors(userForm.pseudo) }}
 						{{ form_widget(userForm.pseudo) }}
 					</div>
 
 					<div class="form-field">
 						{{ form_label(userForm.email) }}
+						{{ form_errors(userForm.email) }}
 						{{ form_widget(userForm.email) }}
 					</div>
 
 					<div class="form-field">
 						{{ form_label(userForm.password.first) }}
+						{{ form_errors(userForm.password.first) }}
 						{{ form_widget(userForm.password.first) }}
 					</div>
 
 					<div class="form-field">
 						{{ form_label(userForm.password.second) }}
+						{{ form_errors(userForm.password.second) }}
 						{{ form_widget(userForm.password.second) }}
 					</div>
 

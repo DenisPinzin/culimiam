@@ -72,7 +72,7 @@
 
                                         <p class=" card-desciption"><span>Description : </span>{{ recette.description }}</p>
 
-                                        <p>Ajoutée par <span>{{ recette.user.pseudo }}</span></p>
+                                        <p class="card-pseudo">Ajoutée par <span>{{ recette.user.pseudo }}</span></p>
                                         
                                         <a class="btn" href={{ path('show_recette', { id: recette.id }) }}>Voir plus</a>
                                     </div>

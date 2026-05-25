@@ -14,6 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Range;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Length;
 
 class RecetteType extends AbstractType
 {
@@ -24,6 +26,18 @@ class RecetteType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Crêpes maison faciles',
                 ],
+
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Le titre est obligatoire',
+                    ]),
+                    new Length([
+                        'min' => 3,
+                        'max' => 60,
+                        'minMessage' => 'Le titre doit contenir au moins {{ limit }} caractères',
+                        'maxMessage' => 'Le titre ne peut pas dépasser {{ limit }} caractères',
+                    ])
+                ],  
             ])
 
             ->add('nombrepersonne', IntegerType::class, [
@@ -38,6 +52,7 @@ class RecetteType extends AbstractType
                     new Range([
                         'min' => 1,
                         'max' => 25,
+                        'notInRangeMessage' => 'Le nombre de personnes doit être entre {{ min }} et {{ max }}',
                     ]),
                 ],
             ])
@@ -46,12 +61,34 @@ class RecetteType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Délicieuses crêpes maison à ma façon!',
                 ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'La description est obligatoire',
+                    ]),
+                    new Length([
+                        'min' => 5,
+                        'max' => 90,
+                        'minMessage' => 'La description doit contenir au moins {{ limit }} caractères',
+                        'maxMessage' => 'La description ne peut pas dépasser {{ limit }} caractères',
+                    ])
+                ],
             ])
 
             ->add('preparation', TextareaType::class, [
                 'attr' => [
                     'placeholder' => 'Décrivez les étapes de préparation',
                     'rows' => 10,
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'La préparation est obligatoire',
+                    ]),
+                    new Length([
+                        'min' => 20,
+                        'max' => 5000,
+                        'minMessage' => 'La préparation doit contenir au moins {{ limit }} caractères',
+                        'maxMessage' => 'La préparation ne peut pas dépasser {{ limit }} caractères',
+                    ])
                 ],
             ])
             

@@ -17,7 +17,7 @@ class Dosage
     private ?int $dosage = null;
 
     #[ORM\ManyToOne(inversedBy: 'dosages')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?recette $recette = null;
 
     #[ORM\ManyToOne(inversedBy: 'dosage')]

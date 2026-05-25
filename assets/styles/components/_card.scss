@@ -10,6 +10,8 @@
 
 .card-display h2 {
     text-align: center;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .card {
@@ -59,6 +61,16 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+.card-desciption{
+    word-break: break-word;
+    overflow-wrap: break-word;   
+}
+
+.card-pseudo {
+    word-break: break-word;
+    overflow-wrap: break-word;    
 }
 
 .card-contain .btn {
