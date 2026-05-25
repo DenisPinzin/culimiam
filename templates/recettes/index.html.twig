@@ -23,6 +23,42 @@
     </section>
     <section class="all-recettes">
         <div class="container">
+
+            <div class="filters">
+                {# filtre mes recette #}
+                {% if  is_granted('ROLE_USER')  %}
+                    <a class="btn" href="{{ path('app_recettes', { mine: mine ? null : 1, type: selectedType}) }}">
+                        {% if mine %}
+                            Toutes les recettes
+                        {% else %}
+                            Mes recettes
+                        {% endif %}
+                    </a>
+                {% endif %}
+
+                {# filtre type de repas #}
+                <form method="GET">
+
+                    {# conserve le filtre "mes recettes" #}
+                    {% if mine %}
+                        <input type="hidden" name="mine" value="1">
+                    {% endif %}
+
+                    <select name="type" onchange="this.form.submit()">
+
+                        <option value="">Tous les types</option>
+
+                        {# types dynamiques venant de la BDD #}
+                        {% for type in typesRepas %}
+                            <option value="{{ type.id }}" {% if selectedType == type.id %} selected {% endif %}>
+                                {{ type.type }}
+                            </option>
+                        {% endfor %}
+
+                    </select>
+                </form>
+            </div>
+
             <div class="section-box">
                 <div class="card-display ">
                     {% for recette in recettes %}
