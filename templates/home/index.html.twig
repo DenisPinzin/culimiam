@@ -33,19 +33,19 @@
                         </div>
                         <div class="accueil-text">
                             <p>
-                                Ici, tu trouveras des recettes testées et approuvées : rapides pour le quotidien, généreuses 
-                                pour les week-ends, et toujours expliquées étape par étape. Chaque recette détaille les 
-                                ingrédients nécessaires et te permet d’ajuster facilement les quantités selon le nombre de 
-                                personnes.
+                                Ici, tu trouveras des recettes expliquées étape par étape pour t’accompagner en cuisine 
+                                au quotidien comme pour les repas plus généreux du week-end. Chaque recette présente 
+                                les ingrédients nécessaires ainsi que les quantités adaptées au nombre de personnes 
+                                indiqué.
                             </p>
                             <p>
                                 Envie de partager tes propres idées ? L’ajout de recettes est réservé aux utilisateurs 
-                                inscrits. Il te suffit de créer un compte et de te connecter pour proposer tes plats, les 
-                                enregistrer et les retrouver facilement.
+                                inscrits. Il te suffit de créer un compte et de te connecter pour proposer tes plats, 
+                                les enregistrer et les retrouver facilement.
                             </p>
                             <p>
-                                Que tu cherches de l’inspiration ou que tu souhaites transmettre tes recettes préférées, 
-                                tout est pensé pour une cuisine simple, pratique et conviviale
+                                Que tu cherches de l’inspiration ou que tu souhaites partager tes recettes préférées, 
+                                tout est pensé pour rendre la cuisine simple, pratique et conviviale.
                             </p>
                         </div>
                     </div>
@@ -61,6 +61,10 @@
                                     <div class="card-img">
                                         {% if recette.imageName %}
                                             <img src="{{ asset('images/upload/' ~ recette.imageName) }}" alt="{{ recette.titre }}">
+                                        {% else %}
+                                            <div class="no-img">
+                                                <p>Pas d'image</p>
+                                            </div>
                                         {% endif %}
                                     </div>
                                     <div class="card-contain">

@@ -65,6 +65,46 @@
     width: fit-content;
 }
 
+.ck-content ol {
+    list-style: decimal !important;
+    padding-left: 2rem !important;
+}
+
+.ck-content ul {
+    list-style: disc !important;
+    padding-left: 2rem !important;
+}
+
+.ck-content ol li {
+    display: list-item !important;
+    list-style: decimal !important;
+}
+
+.ck-content ul li {
+    display: list-item !important;
+    list-style: disc !important;
+}
+
+.preparation ol {
+    list-style: decimal !important;
+    padding-left: 2rem !important;
+}
+
+.preparation ul {
+    list-style: disc !important;
+    padding-left: 2rem !important;
+}
+
+.preparation ol li {
+    display: list-item !important;
+    list-style: decimal !important;
+}
+
+.preparation ul li {
+    display: list-item !important;
+    list-style: disc !important;
+}
+
 @media screen and (max-width: v.$medium) {
     .show-img, .detail-contain .no-img {
         width: 80%;

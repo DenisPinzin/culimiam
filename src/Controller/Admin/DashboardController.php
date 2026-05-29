@@ -58,6 +58,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Ingredients', 'fas fa-carrot', Ingredient::class);
         yield MenuItem::linkToCrud('Recettes', 'fas fa-utensils', Recette::class);
         yield MenuItem::linkToCrud('Type repas', 'fas fa-list', Typerepas::class);
+        yield MenuItem::linkToRoute('Déconnexion', 'fa fa-sign-out-alt', 'app_logout');
+        yield MenuItem::linkToRoute('Retour au site', 'fa fa-arrow-left', 'app_home');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

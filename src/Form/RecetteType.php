@@ -75,7 +75,12 @@ class RecetteType extends AbstractType
             ])
 
             ->add('preparation', TextareaType::class, [
+                //ckeditor cache le vrai textarea donc on désactive le required donc Le champ reste obligatoire grâce à notblank
+                'required' => false,
+
                 'attr' => [
+                    //Ajout d'une class 'ckeditor' dans le textarea de preparation (utilisé après dans le JS pour transformer)
+                    'class' => 'ckeditor',
                     'placeholder' => 'Décrivez les étapes de préparation',
                     'rows' => 10,
                 ],

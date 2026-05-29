@@ -56,3 +56,7 @@ h1, h2, h3, a {
     }
 }
 
+//MESSAGES FLASH
+.flash-message, .alert, .form-field ul { 
+    color: v.$text-tertiary-color; list-style: none; 
+}

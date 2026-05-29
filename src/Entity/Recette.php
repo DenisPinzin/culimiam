@@ -37,7 +37,7 @@ class Recette
 
     #[ORM\ManyToOne(inversedBy: 'recettes')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $user = null;
+    private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'recette')]
     #[ORM\JoinColumn(nullable: false)]
@@ -112,7 +112,7 @@ class Recette
         return $this->preparation;
     }
 
-    public function setPreparation(string $preparation): static
+    public function setPreparation(?string $preparation): static
     {
         $this->preparation = $preparation;
 
@@ -131,12 +131,12 @@ class Recette
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?user $user): static
+    public function setUser(?User $user): static
     {
         $this->user = $user;
 

@@ -26,7 +26,7 @@ final class RecetteController extends AbstractController
         // Si injection de dependance = On est en Modification
         // Sinon, on est un Creation et on créé l'objet
         if(!$recette){
-            $recette = new recette;
+            $recette = new Recette;
         }
 
         // si la recette existe et qu'elle n'appartient pas au user connecté
@@ -42,25 +42,19 @@ final class RecetteController extends AbstractController
         // Récupération des données POST du formulaire
         $form->handleRequest($request);
 
-        //limité le nombre de création de recette
-        if ($form->isSubmitted()) {
-            //// récupération du compteur lié à l'utilisateur et décrémentation d'une tentative
-            $limit = $recipeCreationLimiter
-                ->create($this->getUser()->getUserIdentifier())
-                ->consume();
-            //si le nombre d'essai est atteint
-            if (!$limit->isAccepted()) {
-                //on affiche le message suivant
-                $this->addFlash('danger', 'Vous avez atteint la limite de créations de recettes. Réessayez plus tard.');
-                //on est rediriger vers la même route
-                return $this->redirectToRoute('app_recettes');
-            }
-        }
-
         // Vérification si le formulaire est soumis et Valide
         if($form->isSubmitted() && $form->isValid()){
             
             if (!$recette->getId()) {
+                    $limit = $recipeCreationLimiter
+                    ->create($this->getUser()->getUserIdentifier())
+                    ->consume();
+
+                if (!$limit->isAccepted()) {
+                    $this->addFlash('danger', 'Vous avez atteint la limite de créations de recettes. Réessayez plus tard.');
+                    return $this->redirectToRoute('app_recettes');
+                }
+
                 $recette->setUser($this->getUser());
             }
 

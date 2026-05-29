@@ -6,9 +6,12 @@
     <section class="recette-hero">
         <div class="container recette-hero-display">
             <h1>Les recettes</h1>
-            <p>Découvrez ici toutes vos recettes préférées, partagées avec amour par la communauté.</p>
             <p>
-                Et si le cœur vous en dit, vous pouvez vous aussi contribuer en ajoutant vos propres recettes,le bouton 
+                Découvrez ici les recettes partagées par la communauté, des plats du quotidien aux repas plus généreux 
+                à préparer en famille ou entre amis.
+            </p>
+            <p>
+                Et si le cœur vous en dit, vous pouvez vous aussi contribuer en ajoutant vos propres recettes. Le bouton 
                 « Ajouter une recette » apparaît lorsque vous êtes connecté.
             </p>
             <p>
@@ -23,43 +26,44 @@
     </section>
     <section class="all-recettes">
         <div class="container">
+            <div class="section-box">
 
-            <div class="filters">
-                {# filtre mes recette #}
-                {% if  is_granted('ROLE_USER')  %}
-                    <a class="btn" href="{{ path('app_recettes', { mine: mine ? null : 1, type: selectedType}) }}">
-                        {% if mine %}
-                            Toutes les recettes
-                        {% else %}
-                            Mes recettes
-                        {% endif %}
-                    </a>
-                {% endif %}
-
-                {# filtre type de repas #}
-                <form method="GET">
-
-                    {# conserve le filtre "mes recettes" #}
-                    {% if mine %}
-                        <input type="hidden" name="mine" value="1">
+                {# FILTRE #}
+                <div class="bloc-btn">
+                    {# filtre mes recette #}
+                    {% if  is_granted('ROLE_USER')  %}
+                        <a class="btn" href="{{ path('app_recettes', { mine: mine ? null : 1, type: selectedType}) }}">
+                            {% if mine %}
+                                Toutes les recettes
+                            {% else %}
+                                Mes recettes
+                            {% endif %}
+                        </a>
                     {% endif %}
 
-                    <select name="type" onchange="this.form.submit()">
+                    {# filtre type de repas #}
+                    <form method="GET">
 
-                        <option value="">Tous les types</option>
+                        {# conserve le filtre "mes recettes" #}
+                        {% if mine %}
+                            <input type="hidden" name="mine" value="1">
+                        {% endif %}
 
-                        {# types dynamiques venant de la BDD #}
-                        {% for type in typesRepas %}
-                            <option value="{{ type.id }}" {% if selectedType == type.id %} selected {% endif %}>
-                                {{ type.type }}
-                            </option>
-                        {% endfor %}
+                        <select class="btn" name="type" onchange="this.form.submit()">
 
-                    </select>
-                </form>
-            </div>
+                            <option value="">Tous les types</option>
 
-            <div class="section-box">
+                            {# types dynamiques venant de la BDD #}
+                            {% for type in typesRepas %}
+                                <option value="{{ type.id }}" {% if selectedType == type.id %} selected {% endif %}>
+                                    {{ type.type }}
+                                </option>
+                            {% endfor %}
+
+                        </select>
+                    </form>
+                </div>
+
                 <div class="card-display ">
                     {% for recette in recettes %}
                         <div class="card">

@@ -42,7 +42,9 @@
 
                         <div class="detail-interlign">
                             <h3 class="details-sections">Preparation</h3>
-                            <p>{{ recette.preparation|nl2br }}</p>
+                            <div class="preparation">
+                                {{ recette.preparation|raw }}
+                            </div>
                         </div>
 
                         {% if app.user == recette.user %}

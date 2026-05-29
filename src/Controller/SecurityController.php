@@ -91,8 +91,14 @@ class SecurityController extends AbstractController
             // Envoi en BDD
             $entityManager->flush();
 
+            // Message flash
+            $this->addFlash(
+                'success',
+                'Compte créé avec succès, vous pouvez maintenant vous connecter.'
+            );
+            
             // Redirection de l'utilisateur
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_login');
         }
         return $this->render('security/register.html.twig', [
           'userForm' => $form->createView(), //envoie du formulaire en VUE

@@ -5,6 +5,8 @@
  * This file will be included onto the page via the importmap() Twig function,
  * which should already be in your base.html.twig.
  */
+
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import './styles/app.scss';
 
 // console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
@@ -132,4 +134,27 @@ if (input) {
             results.appendChild(div);
         });
     });
+}
+
+// CKEDITOR
+const textarea = document.querySelector('.ckeditor');
+
+if (textarea) {
+    ClassicEditor
+        .create(textarea, {
+            toolbar: [
+                'heading',
+                '|',
+                'bold',
+                'italic',
+                '|',
+                'numberedList',
+                'bulletedList',
+                '|',
+                'blockQuote',
+                '|',
+                'undo',
+                'redo'
+            ]
+        })
 }
