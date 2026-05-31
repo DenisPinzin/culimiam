@@ -88,11 +88,15 @@
 .preparation ol {
     list-style: decimal !important;
     padding-left: 2rem !important;
+    font-size: 16px !important;
+    font-family: v.$text-font !important;
 }
 
 .preparation ul {
     list-style: disc !important;
     padding-left: 2rem !important;
+    font-size: 16px !important;
+    font-family: v.$text-font !important;
 }
 
 .preparation ol li {

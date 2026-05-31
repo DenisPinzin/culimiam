@@ -63,7 +63,7 @@ final class ResetPasswordController extends AbstractController
 
                 $mailer->send($email); // envoie du mail
 
-                $this->addFlash('success', 'Un email de réinitialisation a été envoyé.');
+                $this->addFlash('success', 'Un email de réinitialisation a bien été envoyé.');
 
                 return $this->redirectToRoute('app_forgot_password');
                 }

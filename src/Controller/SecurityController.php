@@ -93,7 +93,7 @@ class SecurityController extends AbstractController
 
             // Message flash
             $this->addFlash(
-                'success',
+                'register_success',
                 'Compte créé avec succès, vous pouvez maintenant vous connecter.'
             );
             

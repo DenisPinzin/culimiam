@@ -33,6 +33,13 @@
     background-size: 100vw;
 }
 
+.to-the-top svg {
+        border-radius: 100%;
+    color: v.$text-primary-color;
+    background-color: v.$text-tertiary-color;
+
+}
+
 @media screen and (max-width: v.$medium) {
     .card-display {
         grid-template-columns: repeat(1, 1fr);

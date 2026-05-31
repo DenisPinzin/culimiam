@@ -11,14 +11,12 @@
                         <h1>Connexion</h1>
                     </div>
                     <form method="post">
-                        {% for label, messages in app.flashes %}
-                            {% for message in messages %}
-                                <div class="alert alert-{{ label }}">
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
+                        {% for message in app.flashes('register_success') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
                         {% endfor %}
-                        {% if error %}
+                            {% if error %}
                             <div class="error flash-message">
                                 {{ error.messageKey|trans(error.messageData, 'security') }}
                             </div>

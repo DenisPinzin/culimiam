@@ -3,99 +3,108 @@
 {% block title %}Toutes nos recettes!{% endblock %}
 
 {% block body %}
-    <section class="recette-hero">
-        <div class="container recette-hero-display">
-            <h1>Les recettes</h1>
-            <p>
-                Découvrez ici les recettes partagées par la communauté, des plats du quotidien aux repas plus généreux 
-                à préparer en famille ou entre amis.
-            </p>
-            <p>
-                Et si le cœur vous en dit, vous pouvez vous aussi contribuer en ajoutant vos propres recettes. Le bouton 
-                « Ajouter une recette » apparaît lorsque vous êtes connecté.
-            </p>
-            <p>
-                S’il n’est pas visible, il vous suffit de vous inscrire puis de vous connecter pour rejoindre l’aventure !
-            </p>
-            {% if is_granted('ROLE_USER') %}
-                <a class="btn" href="{{ path('app_recette') }}">Ajouter une recette</a>
-            {% else %}
-                <a class="btn" href={{path('app_login')}}>Connexion</a>
-            {% endif %}
-        </div>
-    </section>
-    <section class="all-recettes">
-        <div class="container">
-            <div class="section-box">
+    <main>
+        <section class="recette-hero">
+            <div class="container recette-hero-display">
+                <h1>Les recettes</h1>
+                <p>
+                    Découvrez ici les recettes partagées par la communauté, des plats du quotidien aux repas plus généreux 
+                    à préparer en famille ou entre amis.
+                </p>
+                <p>
+                    Et si le cœur vous en dit, vous pouvez vous aussi contribuer en ajoutant vos propres recettes. Le bouton 
+                    « Ajouter une recette » apparaît lorsque vous êtes connecté.
+                </p>
+                <p>
+                    S’il n’est pas visible, il vous suffit de vous inscrire puis de vous connecter pour rejoindre l’aventure !
+                </p>
 
-                {# FILTRE #}
-                <div class="bloc-btn">
-                    {# filtre mes recette #}
-                    {% if  is_granted('ROLE_USER')  %}
-                        <a class="btn" href="{{ path('app_recettes', { mine: mine ? null : 1, type: selectedType}) }}">
-                            {% if mine %}
-                                Toutes les recettes
-                            {% else %}
-                                Mes recettes
-                            {% endif %}
-                        </a>
-                    {% endif %}
+                {% for message in app.flashes('danger') %}
+                    <div class="flash flash-danger">
+                        {{ message }}
+                    </div>
+                {% endfor %}
 
-                    {# filtre type de repas #}
-                    <form method="GET">
-
-                        {# conserve le filtre "mes recettes" #}
-                        {% if mine %}
-                            <input type="hidden" name="mine" value="1">
+                {% if is_granted('ROLE_USER') %}
+                    <a class="btn" href="{{ path('app_recette') }}">Ajouter une recette</a>
+                {% else %}
+                    <a class="btn" href={{path('app_login')}}>Connexion</a>
+                {% endif %}
+            </div>
+        </section>
+        <section class="all-recettes">
+            <div class="container">
+                <div class="section-box">
+                    {# FILTRE #}
+                    <div class="bloc-btn">
+                        {# filtre mes recette #}
+                        {% if  is_granted('ROLE_USER')  %}
+                            <a class="btn" href="{{ path('app_recettes', { mine: mine ? null : 1, type: selectedType}) }}">
+                                {% if mine %}
+                                    Toutes les recettes
+                                {% else %}
+                                    Mes recettes
+                                {% endif %}
+                            </a>
                         {% endif %}
 
-                        <select class="btn" name="type" onchange="this.form.submit()">
+                        {# filtre type de repas #}
+                        <form method="GET">
 
-                            <option value="">Tous les types</option>
+                            {# conserve le filtre "mes recettes" #}
+                            {% if mine %}
+                                <input type="hidden" name="mine" value="1">
+                            {% endif %}
 
-                            {# types dynamiques venant de la BDD #}
-                            {% for type in typesRepas %}
-                                <option value="{{ type.id }}" {% if selectedType == type.id %} selected {% endif %}>
-                                    {{ type.type }}
-                                </option>
-                            {% endfor %}
+                            <select class="btn" name="type" onchange="this.form.submit()">
 
-                        </select>
-                    </form>
-                </div>
+                                <option value="">Tous les types</option>
 
-                <div class="card-display ">
-                    {% for recette in recettes %}
-                        <div class="card">
-                            <div class="card-img">
-                                {% if recette.imageName %}
-                                    <img src="{{ asset('images/upload/' ~ recette.imageName) }}" alt="{{ recette.titre }}">
-                                {% else %}
-                                    <div class="no-img">
-                                        <p>Pas d'image</p>
-                                    </div>
-                                {% endif %}
+                                {# types dynamiques venant de la BDD #}
+                                {% for type in typesRepas %}
+                                    <option value="{{ type.id }}" {% if selectedType == type.id %} selected {% endif %}>
+                                        {{ type.type }}
+                                    </option>
+                                {% endfor %}
+
+                            </select>
+                        </form>
+                    </div>
+
+                    <div class="card-display ">
+                        {% for recette in recettes %}
+                            <div class="card">
+                                <div class="card-img">
+                                    {% if recette.imageName %}
+                                        <img src="{{ asset('images/upload/' ~ recette.imageName) }}" alt="{{ recette.titre }}">
+                                    {% else %}
+                                        <div class="no-img">
+                                            <p>Pas d'image</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="card-contain">
+                                    <p class="etiquette" style="background-color: {{ recette.typerepas.couleur }};">{{ recette.typerepas.type }}</p>
+
+                                    <h2 class="card-title">{{ recette.titre }}</h2>
+
+                                    <p class="card-personnes"><span>Pour : </span>{{ recette.nombrepersonne }} personnes</p>
+
+                                    <p class="card-desciption"><span>Description : </span>{{ recette.description }}</p>
+
+                                    <p>Ajoutée par <span>{{ recette.user.pseudo }}</span></p>
+                                    
+                                    <a class="btn" href={{ path('show_recette', { id: recette.id }) }}>Voir plus</a>
+                                </div>
                             </div>
-                            <div class="card-contain">
-                                <p class="etiquette" style="background-color: {{ recette.typerepas.couleur }};">{{ recette.typerepas.type }}</p>
+                        {% else %}
+                            <p>Aucune recette pour le moment.</p>
+                        {% endfor %}               
+                    </div>
 
-                                <h2 class="card-title">{{ recette.titre }}</h2>
-
-                                <p class="card-personnes"><span>Pour : </span>{{ recette.nombrepersonne }} personnes</p>
-
-                                <p class="card-desciption"><span>Description : </span>{{ recette.description }}</p>
-
-                                <p>Ajoutée par <span>{{ recette.user.pseudo }}</span></p>
-                                
-                                <a class="btn" href={{ path('show_recette', { id: recette.id }) }}>Voir plus</a>
-                            </div>
-                        </div>
-                    {% else %}
-                        <p>Aucune recette pour le moment.</p>
-                    {% endfor %}               
                 </div>
-
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
+
 {% endblock %}
