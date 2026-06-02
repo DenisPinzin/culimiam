@@ -1,0 +1,7 @@
+/**
+ * Bundled by jsDelivr using Rollup v2.79.2 and Terser v5.39.0.
+ * Original file: /npm/micromark-extension-gfm-task-list-item@2.0.1/index.js
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+import{factorySpace as e}from"micromark-factory-space";import{markdownLineEndingOrSpace as t,markdownLineEnding as n,markdownSpace as r}from"micromark-util-character";function c(){return{enter:{taskListCheck(){this.tag('<input type="checkbox" disabled="" ')}},exit:{taskListCheck(){this.tag("/>")},taskListCheckValueChecked(){this.tag('checked="" ')}}}}const i={tokenize:function(e,c,i){const s=this;return function(t){if(null!==s.previous||!s._gfmTasklistFirstContentOfListItem)return i(t);return e.enter("taskListCheck"),e.enter("taskListCheckMarker"),e.consume(t),e.exit("taskListCheckMarker"),a};function a(n){return t(n)?(e.enter("taskListCheckValueUnchecked"),e.consume(n),e.exit("taskListCheckValueUnchecked"),u):88===n||120===n?(e.enter("taskListCheckValueChecked"),e.consume(n),e.exit("taskListCheckValueChecked"),u):i(n)}function u(t){return 93===t?(e.enter("taskListCheckMarker"),e.consume(t),e.exit("taskListCheckMarker"),e.exit("taskListCheck"),o):i(t)}function o(t){return n(t)?c(t):r(t)?e.check({tokenize:k},c,i)(t):i(t)}}};function s(){return{text:{91:i}}}function k(t,n,r){return e(t,(function(e){return null===e?r(e):n(e)}),"whitespace")}export{s as gfmTaskListItem,c as gfmTaskListItemHtml};export default null;

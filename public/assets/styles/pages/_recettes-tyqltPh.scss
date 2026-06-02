@@ -1,0 +1,40 @@
+@use "../abstract/variable" as v;
+@use "../components/card" as c;
+
+//RECETTE-HERO
+
+.recette-hero {
+    display: flex;
+    justify-content: center;
+    background-color: v.$background-primary-color;
+    padding: 1.5rem 0;
+}
+
+.recette-hero-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: v.$background-primary-color;
+    gap: 2rem;
+}
+
+.recette-hero-display p {
+    text-align: center;
+}
+
+// TOUTES LES RECETTE
+
+.all-recettes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("~/public/assets/img/bg-recettes.jpg");
+    background-repeat: repeat;
+    background-size: 100vw;
+}
+
+@media screen and (max-width: v.$medium) {
+    .card-display {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

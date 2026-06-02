@@ -1,0 +1,101 @@
+@use "../abstract/variable" as v;
+
+.main-form  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 80vh;
+}
+
+.form-display {
+    width: 70%;
+}
+
+.form-display form{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+
+.main-form h1 {
+    font-size: v.$theme-title-h1;
+    text-align: center;
+    padding-bottom: 3rem;
+}
+
+form .form-field {
+    display: flex;
+    flex-direction: column;
+    font-family: v.$title-font;
+    gap: 0.5rem;
+}
+
+.form-field label {
+    font-size: v.$theme-input;
+    font-weight: bold;
+}
+
+.form-field input {
+    background-color: v.$background-tertiary-color;
+    border-radius: 10px;
+    border-color: v.$background-tertiary-color;
+    padding: 0.5rem;
+}
+
+textarea {
+    border-radius: 10px;
+    background-color: v.$background-tertiary-color;
+    border-color: v.$background-tertiary-color;
+    border-color: grey;
+    min-height: 4rem;
+    padding: 0.5rem;
+}
+
+select {
+    border-radius: 10px;
+    background-color: v.$background-tertiary-color;
+    border-color: v.$background-tertiary-color;
+    border-color: grey;
+    padding: 0.5rem;
+}
+
+.bloc-btn {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    margin: 0 auto;
+}
+
+.forget {
+    color: v.$text-tertiary-color;
+    display: flex;
+    align-items: center;
+}
+
+.forget:hover {
+    font-weight: bold;
+}
+
+@media screen and (max-width: v.$medium) {
+    .form-display {
+        width: 90%;
+    }
+    .form-field label {
+        font-size: v.$theme-input-mobile;
+    }
+}
+
+@media screen and (max-width: v.$small) {
+    .bloc-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-form h1 {
+        font-size: v.$theme-title-h1-mobile;
+    }
+}

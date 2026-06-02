@@ -1,0 +1,58 @@
+@use "../abstract/variable" as v;
+@use '../abstract/mixins';
+
+*{
+    margin:0;
+    padding:0;
+    list-style: none;
+    text-decoration: none;
+}
+
+.container {
+    width: 1033px;
+}
+
+.section-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    background-color: v.$background-primary-color;
+    border-radius: 10px;
+    padding: 3rem;
+    margin: 4rem 0;
+}
+
+.section-box h2{
+    text-align: center;
+}
+
+p {
+    font-family: v.$text-font;
+}
+
+h1, h2, h3, a {
+    font-family: v.$title-font
+}
+
+.btn {
+    @include mixins.button(v.$background-primary-color, v.$text-tertiary-color);
+}
+
+@media screen and (max-width: v.$medium) {
+    p {
+        font-size: 1rem;
+    }
+
+    .btn {
+        font-size: v.$theme-text-mobile;
+    }
+    .container {
+        width: 646px;
+    }
+
+    .section-box {
+        padding: 2rem 1rem;
+    }
+}
+

@@ -1,0 +1,7 @@
+/**
+ * Bundled by jsDelivr using Rollup v2.79.2 and Terser v5.39.0.
+ * Original file: /npm/hast-util-is-element@3.0.0/index.js
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+const t=function(t,e,r,i,u){const f=n(e);if(null!=r&&("number"!=typeof r||r<0||r===Number.POSITIVE_INFINITY))throw new Error("Expected positive finite `index`");if(!(null==i||i.type&&i.children))throw new Error("Expected valid `parent`");if(null==r!=(null==i))throw new Error("Expected both `index` and `parent`");return!!o(t)&&f.call(u,t,r,i)},n=function(t){if(null==t)return r;if("string"==typeof t)return function(t){return e(n);function n(n){return n.tagName===t}}(t);if("object"==typeof t)return function(t){const r=[];let o=-1;for(;++o<t.length;)r[o]=n(t[o]);return e(i);function i(...t){let n=-1;for(;++n<r.length;)if(r[n].apply(this,t))return!0;return!1}}(t);if("function"==typeof t)return e(t);throw new Error("Expected function, string, or array as `test`")};function e(t){return function(n,e,r){return Boolean(o(n)&&t.call(this,n,"number"==typeof e?e:void 0,r||void 0))}}function r(t){return Boolean(t&&"object"==typeof t&&"type"in t&&"element"===t.type&&"tagName"in t&&"string"==typeof t.tagName)}function o(t){return null!==t&&"object"==typeof t&&"type"in t&&"tagName"in t}export{n as convertElement,t as isElement};export default null;

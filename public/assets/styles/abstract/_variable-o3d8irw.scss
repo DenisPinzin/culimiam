@@ -1,0 +1,45 @@
+//Import font
+@font-face {
+    font-family: "Bitter-regular";
+    src: url("../base/Bitter/static/Bitter-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Work_Sans-regular";
+    src: url("../base/Work_Sans/static/WorkSans-Regular.ttf");
+}
+
+// Colors
+$text-primary-color: #FFFFF9;
+$text-secondary-color: #000001;
+$text-tertiary-color: #FE4700;
+$background-primary-color: #FFFFF9;
+$background-secondary-color: #000001;
+$background-tertiary-color: #EBEBE0;
+$typeofmeal-color: #E842B9; 
+
+   
+// Font-family
+$text-font: "Bitter-regular";
+$title-font: "Work_Sans-regular";
+
+// Polices
+$theme-title-h1-accueil-mobile: 3rem;
+$theme-title-h1: 3rem;
+$theme-title-h1-mobile: 2.3rem;
+$theme-title-p-accueil-mobile: 2rem;
+$theme-title-tablet: 4rem;
+$theme-title-mobile: 4rem;
+$theme-text: 1rem;
+$theme-text-mobile: 1.2rem;
+$theme-title-h1: 3rem;
+$theme-input: 1.2rem;
+$theme-input-mobile: 1.6rem;
+
+
+
+// Breakpoints
+$small: 768px;
+$medium: 1024px;
+$large: 1440px;
+

@@ -1,0 +1,19 @@
+//CKEDITOR5
+
+@import 'ckeditor5/ckeditor5.css';
+
+//GENERAL
+
+@use 'base/general';
+
+//PAGES
+
+@use 'pages/accueil';
+@use 'pages/recettes';
+@use 'pages/login';
+@use 'pages/register';
+@use 'pages/recetteform';
+@use 'pages/show';
+@use 'pages/contact';
+@use 'pages/request';
+@use 'pages/reset';
