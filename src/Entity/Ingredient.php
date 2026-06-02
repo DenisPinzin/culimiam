@@ -22,9 +22,9 @@ class Ingredient
     private ?string $mesure = null;
 
     /**
-     * @var Collection<int, dosage>
+     * @var Collection<int, Dosage>
      */
-    #[ORM\OneToMany(targetEntity: dosage::class, mappedBy: 'ingredient')]
+    #[ORM\OneToMany(targetEntity: Dosage::class, mappedBy: 'ingredient')]
     private Collection $dosage;
 
     public function __construct()
@@ -62,14 +62,14 @@ class Ingredient
     }
 
     /**
-     * @return Collection<int, dosage>
+     * @return Collection<int, Dosage>
      */
     public function getDosage(): Collection
     {
         return $this->dosage;
     }
 
-    public function addDosage(dosage $dosage): static
+    public function addDosage(Dosage $dosage): static
     {
         if (!$this->dosage->contains($dosage)) {
             $this->dosage->add($dosage);
@@ -79,7 +79,7 @@ class Ingredient
         return $this;
     }
 
-    public function removeDosage(dosage $dosage): static
+    public function removeDosage(Dosage $dosage): static
     {
         if ($this->dosage->removeElement($dosage)) {
             // set the owning side to null (unless already changed)
