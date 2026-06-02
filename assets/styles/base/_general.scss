@@ -45,7 +45,10 @@ a, .btn, #recette_imageFile {
 }
 
 @media screen and (max-width: v.$medium) {
-
+    p {
+        font-family: v.$text-font;
+        font-size: 1.1rem;
+    }
     .btn {
         font-size: v.$theme-text-mobile;
     }
