@@ -24,7 +24,7 @@ class Typerepas
     /**
      * @var Collection<int, recette>
      */
-    #[ORM\OneToMany(targetEntity: recette::class, mappedBy: 'typerepas')]
+    #[ORM\OneToMany(targetEntity: Recette::class, mappedBy: 'typerepas')]
     private Collection $recette;
 
     public function __construct()

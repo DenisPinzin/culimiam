@@ -18,7 +18,7 @@ class Dosage
 
     #[ORM\ManyToOne(inversedBy: 'dosages')]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
-    private ?recette $recette = null;
+    private ?Recette $recette = null;
 
     #[ORM\ManyToOne(inversedBy: 'dosage')]
     #[ORM\JoinColumn(nullable: false)]
@@ -41,12 +41,12 @@ class Dosage
         return $this;
     }
 
-    public function getRecette(): ?recette
+    public function getRecette(): ?Recette
     {
         return $this->recette;
     }
 
-    public function setRecette(?recette $recette): static
+    public function setRecette(?Recette $recette): static
     {
         $this->recette = $recette;
 
