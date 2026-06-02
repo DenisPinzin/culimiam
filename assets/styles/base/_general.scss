@@ -29,11 +29,15 @@
 
 p {
     font-family: v.$text-font;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
 }
 
 h1, h2, h3, a {
     font-family: v.$title-font
+}
+
+a, .btn, #recette_imageFile { 
+    cursor: pointer; 
 }
 
 .btn {
@@ -41,9 +45,6 @@ h1, h2, h3, a {
 }
 
 @media screen and (max-width: v.$medium) {
-    p {
-        font-size: 1.4rem;
-    }
 
     .btn {
         font-size: v.$theme-text-mobile;
