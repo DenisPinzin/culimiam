@@ -63,14 +63,9 @@
     gap: 1rem;
 }
 
-.card-desciption{
+.card-desciption, .card-pseudo, .preparation{
     word-break: break-word;
     overflow-wrap: break-word;   
-}
-
-.card-pseudo {
-    word-break: break-word;
-    overflow-wrap: break-word;    
 }
 
 .card-contain .btn {

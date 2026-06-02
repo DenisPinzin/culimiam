@@ -29,6 +29,7 @@
 
 p {
     font-family: v.$text-font;
+    font-size: 1.2rem;
 }
 
 h1, h2, h3, a {
@@ -41,7 +42,7 @@ h1, h2, h3, a {
 
 @media screen and (max-width: v.$medium) {
     p {
-        font-size: 1rem;
+        font-size: 1.4rem;
     }
 
     .btn {
@@ -57,8 +58,9 @@ h1, h2, h3, a {
 }
 
 //MESSAGES FLASH
-.flash-message, .alert, .form-field ul, .flash-danger, .alert-success { 
-    color: v.$text-tertiary-color; list-style: none;
+.flash-message, .alert, .flash-danger, .alert-success { 
+    color: v.$text-tertiary-color; 
+    list-style: none;
     font-size: v.$theme-text;
     font-family: v.$title-font; 
 }
