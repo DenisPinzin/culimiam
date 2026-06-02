@@ -61,9 +61,11 @@ final class RecetteController extends AbstractController
             foreach ($recette->getDosages()->toArray() as $oldDosage) {
                 $entityManager->remove($oldDosage);
             }
-
+            // exécute les opérations en attente et enregistre les modifications en base de données
             $entityManager->flush();
+            // récupère tous les identifiants des ingrédients envoyés par le formulaire
             $ingredients = $request->request->all('ingredients');
+            // récupère les quantités associées à chaque ingrédient
             $dosages = $request->request->all('dosages');
             
             foreach ($ingredients as $ingredientId) {
@@ -87,8 +89,8 @@ final class RecetteController extends AbstractController
 
         return $this->render('recetteform/index.html.twig', [
             'recetteForm' => $form->createView(), //envoie du formulaire en VUE
-            'isModification' => $recette->getId() !== null, //Envoie d'un variable pour définir si on est en Modif ou Créa
-            'recette' => $recette,
+            'isModification' => $recette->getId() !== null, //Envoie d'une variable pour définir si on est en Modif ou Créa
+            'recette' => $recette, // contient l'objet Recette complet afin de pouvoir récupérer ses données dans la vue
         ]);
     }
 
@@ -127,23 +129,18 @@ final class RecetteController extends AbstractController
     {
         // récupération de ce que tape l'utilisateur dans l'input depuis JS
         $query = $request->query->get('q', '');
-
         // appel de la méthode du repository
         $ingredients = $ingredientRepository->searchByName($query);
-
         // tableau qui sera envoyé en JSON
         $data = [];
-
         // transformation des objets ingredient en tableau JSON
         foreach ($ingredients as $ingredient) {
-
             $data[] = [
                 'id' => $ingredient->getId(),
                 'nom' => $ingredient->getNom(),
                 'mesure' => $ingredient->getMesure(),
             ];
         }
-
         // retour JSON vers JavaScript
         return $this->json($data);
     }

@@ -1,0 +1,17 @@
+{
+  "build/app.css": "/build/app.css",
+  "build/app.js": "/build/app.js",
+  "build/runtime.js": "/build/runtime.js",
+  "build/vendors-node_modules_ckeditor_ckeditor5-build-classic_build_ckeditor_js-node_modules_core-js_-dd5f13.js": "/build/vendors-node_modules_ckeditor_ckeditor5-build-classic_build_ckeditor_js-node_modules_core-js_-dd5f13.js",
+  "build/images/bg-recettes.jpg": "/build/images/bg-recettes.54766cad.jpg",
+  "build/images/inscription.jpg": "/build/images/inscription.966b1d1a.jpg",
+  "build/images/bg-request.jpg": "/build/images/bg-request.8971506d.jpg",
+  "build/images/bg-contact.jpg": "/build/images/bg-contact.b59c9414.jpg",
+  "build/images/bg-ajouter.jpg": "/build/images/bg-ajouter.125f250d.jpg",
+  "build/images/bg-reset.jpg": "/build/images/bg-reset.a9dc469b.jpg",
+  "build/images/connexion.jpg": "/build/images/connexion.1641e559.jpg",
+  "build/images/bg-details.jpg": "/build/images/bg-details.1c9640d7.jpg",
+  "build/images/bg-accueil.jpg": "/build/images/bg-accueil.4fd118ee.jpg",
+  "build/fonts/WorkSans-Regular.ttf": "/build/fonts/WorkSans-Regular.e1ad7616.ttf",
+  "build/fonts/Bitter-Regular.ttf": "/build/fonts/Bitter-Regular.35950b2c.ttf"
+}

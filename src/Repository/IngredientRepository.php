@@ -23,18 +23,15 @@ class IngredientRepository extends ServiceEntityRepository
         $motRecherche = '%' . $texteRecherche . '%';
 
         return $this->createQueryBuilder('ingredient')
-
             // cherche les ingrédients contenant le texte
             ->where('ingredient.nom LIKE :motRecherche')
-
             // remplace "motRecherche" par la vrai valeur
             ->setParameter('motRecherche', $motRecherche)
-
             // limite à 10 résultat
             ->setMaxResults(10)
-
+            // transforme le QueryBuilder en requête Doctrine
             ->getQuery()
-
+            // exécute la requête et retourne les résultats trouvés
             ->getResult();
     }
     //    /**
