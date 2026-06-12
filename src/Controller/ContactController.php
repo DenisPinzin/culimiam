@@ -35,7 +35,7 @@ final class ContactController extends AbstractController
 
             $email = (new Email())
                 ->from($data['email'])
-                ->to('contact@culimiam.sc5duyo5958')
+                ->to('contact@culimiam.sc5duyo5958.universe.wf')
                 ->subject('Nouveau message de contact')
                 ->text(
                     "Email: {$data['email']}\n\n".
