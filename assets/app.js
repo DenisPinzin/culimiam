@@ -79,7 +79,7 @@ if (input) {
             div.addEventListener('click', () => {
                 //Crée une constante qui va compté le nombre d'ingredient
                 const ingredientCount = selected.children.length;
-                //si le bombre d'ingrédients est superieur à 20 un message d'alerte s'affiche et annule l'ajout
+                //si le nombre d'ingrédients est superieur à 20 un message d'alerte s'affiche et annule l'ajout
                 if (ingredientCount >= 20) {
                     alert('Maximum 20 ingrédients');
                     return;
