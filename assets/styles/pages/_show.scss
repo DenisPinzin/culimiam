@@ -48,6 +48,10 @@
     font-weight: bold;
 }
 
+.recipe-wrap {
+    word-wrap:break-word;
+}
+
 .detail-interlign {
     display: flex;
     flex-direction: column;
