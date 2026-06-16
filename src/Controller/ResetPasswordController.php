@@ -56,7 +56,7 @@ final class ResetPasswordController extends AbstractController
                 // creation du lien integrant le token
 
                 $email = (new Email())
-                    ->from('noreply@yourdomain.com')
+                    ->from('d.pinzinSRO@gmail.com')
                     ->to($user->getEmail())
                     ->subject('Réinitialisation de votre mot de passe')
                     ->text("Voici votre lien de réinitialisation : $resetLink");
