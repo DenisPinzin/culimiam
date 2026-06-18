@@ -60,7 +60,7 @@ final class ResetPasswordController extends AbstractController
                     ->to($user->getEmail())
                     ->subject('Réinitialisation de votre mot de passe')
                     ->text("Voici votre lien de réinitialisation : $resetLink");
-
+                
                 $mailer->send($email); // envoie du mail
 
                 $this->addFlash('success', 'Un email de réinitialisation a bien été envoyé.');
